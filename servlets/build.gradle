@@ -1,5 +1,6 @@
 apply plugin: 'war'
 
+
 repositories {
     mavenCentral()
 }
@@ -11,6 +12,7 @@ dependencies {
     // Tomcat internal libraries
     providedCompile 'org.apache.tomcat:tomcat-api:+'
     providedCompile 'org.apache.tomcat:tomcat-jsp-api:+'
+
 
     //log4j
     compile group: 'log4j', name: 'log4j', version: '1.2.17'

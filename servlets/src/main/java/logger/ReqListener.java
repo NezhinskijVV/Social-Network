@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * Created by Nezhinskij VV on 10.11.2016.
  */
-
+@WebListener("/*")
 public class ReqListener implements ServletRequestListener {
 
     private static final Logger LOG = Logger.getLogger(ReqListener.class);
