@@ -1,0 +1,6 @@
+dependencies {
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    compile group: 'mm-mysql', name: 'mm-mysql', version: '2.0.7'
+
+    compile project(":core")
+}
