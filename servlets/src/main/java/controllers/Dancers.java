@@ -1,9 +1,7 @@
 package controllers;
 
 import dao.DancerDao;
-import dao.StyleDao;
 import model.Dancer;
-import model.Style;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;

@@ -13,8 +13,10 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
+ *
  * Created by Nezhinskij VV on 23.11.2016.
  */
+@SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 public class SqlStyleDao implements StyleDao {
     private ConnectionPool connectionPool;
 
@@ -22,7 +24,6 @@ public class SqlStyleDao implements StyleDao {
         this.connectionPool = connectionPool;
     }
 
-    @Override
     public Collection<Style> getAll() {
         Collection<Style> stylesOfDance= new HashSet<>();
         try (
