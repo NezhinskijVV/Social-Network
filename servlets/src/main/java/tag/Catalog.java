@@ -1,7 +1,5 @@
 package tag;
 
-import model.User;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;

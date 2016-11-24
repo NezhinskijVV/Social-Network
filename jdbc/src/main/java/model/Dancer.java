@@ -3,33 +3,36 @@ package model;
 import java.time.LocalDate;
 
 /**
- *
  * Created by Nezhinskij VV on 17.11.2016.
  */
-public class Person {
+public class Dancer {
     private final long id;
     private final String firstName;
     private final String lastName;
-    private final String style;
     private final LocalDate dob;
+    private final String nickname;
     private final String email;
     private final String password;
-    private final String address;
     private final String telephone;
+    private final String style;
 
 
-    public Person(long id, String firstName, String lastName, String style, LocalDate dob, String email, String password, String address, String telephone) {
+    public Dancer(long id, String firstName, String lastName, LocalDate dob, String nickname,
+                  String email, String password, String telephone, String style) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.style = style;
         this.dob = dob;
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.address = address;
         this.telephone = telephone;
+        this.style = style;
     }
 
+    public long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -39,12 +42,12 @@ public class Person {
         return lastName;
     }
 
-    public String style() {
-        return style;
-    }
-
     public LocalDate getDob() {
         return dob;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     public String getEmail() {
@@ -55,13 +58,11 @@ public class Person {
         return password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public String getTelephone() {
         return telephone;
     }
 
-
+    public String getStyle() {
+        return style;
+    }
 }

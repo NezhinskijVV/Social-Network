@@ -1,9 +1,10 @@
 import common.ConnectionPool;
 import common.ConnectionPoolException;
-import dao.PersonDao;
-import dao.UserDao;
-import dao.sql.SqlPersonDao;
-import dao.sql.SqlUserDao;
+import dao.DancerDao;
+import dao.StyleDao;
+import dao.sql.SqlDancerDao;
+import dao.sql.SqlStyleDao;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,10 +27,10 @@ public class Initer implements ServletContextListener {
             e.printStackTrace();
         }
 
-        PersonDao personDao = new SqlPersonDao(connectionPool);
-        UserDao userDao = new SqlUserDao(connectionPool);
+        DancerDao dancerDao = new SqlDancerDao(connectionPool);
+        StyleDao styleDao = new SqlStyleDao(connectionPool);
 
-        context.setAttribute("personDao", personDao);
-        context.setAttribute("userDao", userDao);
+        context.setAttribute("styleDao", styleDao);
+        context.setAttribute("dancerDao", dancerDao);
     }
 }

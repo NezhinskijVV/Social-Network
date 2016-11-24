@@ -1,7 +1,6 @@
 package controllers;
 
-import dao.UserDao;
-import model.User;
+import tag.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
