@@ -25,17 +25,18 @@ public class SqlDancerDao implements DancerDao {
 
     @Override
     public Collection<Dancer> getAll() {
-
+        System.out.println("getALL");
         Collection<Dancer> dancers = new HashSet<>();
         try (Connection connection = connectionPool.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
-                     "SELECT id,first_name,last_name,dob,nickname" +
+                     "SELECT dancer.id,first_name,last_name,dob,nickname," +
                              "email,password,telephone,style " +
                              "FROM dancers_network.dancer " +
                              "LEFT JOIN dancers_network.style " +
-                             "ON dancers_network.dancer.id=dancers_network.style.id")
+                             "ON dancer.id= style.id")
         ) {
+            System.out.println("join");
             while (resultSet.next())
                 dancers.add(
                         new Dancer(

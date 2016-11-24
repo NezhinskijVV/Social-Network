@@ -1,6 +1,8 @@
 package controllers;
 
+import dao.DancerDao;
 import dao.StyleDao;
+import model.Dancer;
 import model.Style;
 
 import javax.servlet.RequestDispatcher;
@@ -15,22 +17,22 @@ import java.util.Collection;
 
 /**
  * Created by Nezhinskij VV on 24.11.2016.
- * 
+ *
  */
-@WebServlet("/styles")
-public class Styles extends HttpServlet {
-    private StyleDao styleDao;
+@WebServlet("/dancers")
+public class Dancers extends HttpServlet {
+    private DancerDao dancerDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        styleDao = (StyleDao) config.getServletContext().getAttribute("styleDao");
+        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Collection<Style>  styles = styleDao.getAll();
-        req.setAttribute("styles", styles);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/styles/index.jsp");
+        Collection<Dancer>  dancers = dancerDao.getAll();
+        req.setAttribute("dancers", dancers);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/index.jsp");
         requestDispatcher.forward(req,resp);
     }
 
