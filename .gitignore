@@ -23,3 +23,20 @@ build/
 servlets/build/
 .gradle/
 
+.idea/artifacts/
+.idea/compiler.xml
+.idea/copyright/
+.idea/dictionaries/
+.idea/gradle.xml
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/modules/servlets/
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+classes/
+core/src/main/resources/
+core/src/test/
+jdbc/src/test/
+servlets/src/test/
