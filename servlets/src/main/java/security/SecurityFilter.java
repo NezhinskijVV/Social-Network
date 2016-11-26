@@ -33,8 +33,10 @@ public class SecurityFilter implements HttpFilter {
         }
         Map<String, String[]> params = request.getParameterMap();
         if (params.containsKey("j_username") && params.containsKey("j_password")) {
-            if (authorize(params)) {
+            if (authorize(request,params)) {
                 session.setAttribute(KEY, new Object());
+             //   session.setAttribute("id", getId(params));
+                System.out.println(session.getAttribute("id"));
                 chain.doFilter(request, response);
             } else request.getRequestDispatcher("user/loginError.jsp").forward(request, response);
         } else {
@@ -43,8 +45,9 @@ public class SecurityFilter implements HttpFilter {
         }
     }
 
-    private boolean authorize(Map<String, String[]> parameterMap) {
+
+    private boolean authorize(HttpServletRequest request,Map<String, String[]> parameterMap) {
         System.out.println("input: " + parameterMap.get("j_username")[0] + " " + parameterMap.get("j_password")[0]);
-        return dancerDao.isRegistered(parameterMap.get("j_username")[0], parameterMap.get("j_password")[0]);
+        return dancerDao.isRegistered(request,parameterMap.get("j_username")[0], parameterMap.get("j_password")[0]);
     }
 }

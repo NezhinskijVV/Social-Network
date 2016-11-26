@@ -33,6 +33,4 @@ public class Styles extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/styles/index.jsp");
         requestDispatcher.forward(req,resp);
     }
-
-
 }

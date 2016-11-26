@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="/WEB-INF/dancers.tld" prefix="dancers"%>
+<%@ taglib uri="/WEB-INF/dancers.tld" prefix="dancers" %>
 
 <html>
 <head>
-    <title> Танцоры</title>
+    <title> Танцоры </title>
 </head>
 <body>
 <jsp:useBean id="dancers" class="java.util.HashSet" scope="request"/>
