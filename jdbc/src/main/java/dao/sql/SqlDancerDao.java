@@ -5,7 +5,6 @@ import common.ConnectionPoolException;
 import dao.DancerDao;
 import model.Dancer;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,7 +87,7 @@ public class SqlDancerDao implements DancerDao {
     }
 
     @Override
-    public boolean isRegistered(HttpServletRequest req, String login, String hashPassword) {
+    public long isRegistered(String login, String hashPassword) {
         try (Connection connection = connectionPool.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
@@ -96,13 +95,12 @@ public class SqlDancerDao implements DancerDao {
                              + login + "' AND password='" + hashPassword + "'")
         ) {
             if( resultSet.next()){
-                System.out.println(resultSet.getLong(1));
-                req.getSession().setAttribute("id", resultSet.getLong(1));
-                return true;
+                //req.getSession().setAttribute("id", resultSet.getLong(1));
+                return resultSet.getLong(1);
             }
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 }

@@ -5,14 +5,14 @@ package model;
  * Created by Nezhinskij VV on 25.11.2016.
  */
 public class MessageContainer {
-    private long  id_dancer;
-    private long id_dancer2;
+    private long  idDancer;
+    private long idDancer2;
     private String message;
     private boolean isRead;
 
-    public MessageContainer(long id_dancer, long id_dancer2, String message, boolean isRead) {
-        this.id_dancer = id_dancer;
-        this.id_dancer2 = id_dancer2;
+    public MessageContainer(long idDancer, long idDancer2, String message, boolean isRead) {
+        this.idDancer = idDancer;
+        this.idDancer2 = idDancer2;
         this.message = message;
         this.isRead = isRead;
     }
@@ -25,11 +25,11 @@ public class MessageContainer {
         return isRead;
     }
 
-    public long getId_dancer() {
-        return id_dancer;
+    public long getidDancer() {
+        return idDancer;
     }
 
-    public long getId_dancer2() {
-        return id_dancer2;
+    public long getidDancer2() {
+        return idDancer2;
     }
 }

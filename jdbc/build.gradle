@@ -3,8 +3,4 @@ dependencies {
     compile group: 'mm-mysql', name: 'mm-mysql', version: '2.0.7'
 
     compile project(":core")
-    // Tomcat internal libraries
-
-    compile 'org.apache.tomcat:tomcat-api:+'
-    compile 'org.apache.tomcat:tomcat-jsp-api:+'
 }

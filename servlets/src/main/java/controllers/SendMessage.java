@@ -14,7 +14,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
- * Created by Nezhinskij VV on 25.11.2016.
+ * Created
+ *by Nezhinskij VV on 25.11.2016.
  */
 @WebServlet("/send")
 public class SendMessage extends HttpServlet {
@@ -31,23 +32,28 @@ public class SendMessage extends HttpServlet {
 
         // todo:  два листа прочитанных и нет и запись в базу
 
-        long id_dancer = (long) req.getSession().getAttribute("id");
-        long id_dancer2 = Long.parseLong((String) req.getSession().getAttribute("to_id"));
+        long idDancer = (long) req.getSession().getAttribute("id");
+        long idDancer2 = Long.parseLong((String) req.getSession().getAttribute("to_id"));
         String message = req.getParameter("message");
 
-        System.out.println("I" + id_dancer);
-        System.out.println("you" + id_dancer2);
-        System.out.println("message" + message);
-        //MessageContainer messageContainer = new MessageContainer(id_dancer, id_dancer2, message, false);
+//        System.out.println("I" + idDancer);
+//        System.out.println("you" + idDancer2);
+//        System.out.println("message" + message);
+        MessageContainer messageContainer = new MessageContainer(idDancer, idDancer2, message, false);
+        history.addToHistory(messageContainer);
+
         PrintWriter out = resp.getWriter();
         ArrayList<MessageContainer> list = history.getList();
         for (MessageContainer m : list
                 ) {
-            if (((long) req.getSession().getAttribute("id") == m.getId_dancer())
-                    | ((long) req.getSession().getAttribute("id") == m.getId_dancer2())) {
-                out.println(m.getId_dancer() + " " + m.getMessage() + "</br>");
+//            System.out.println(" id FROM " + idDancer + " id TO " + idDancer2 +
+//                    "mess id FROM " + m.getidDancer() + "mess id TO" + m.getidDancer2() + " " + m.getMessage());
+
+            if (((idDancer == m.getidDancer()) && (idDancer2 == m.getidDancer2())) |
+                    ((idDancer == m.getidDancer2()) && (idDancer2 == m.getidDancer()))) {
+                out.println("<br>" + m.getidDancer() + " " + m.getidDancer2() + " " + m.getMessage() + "</br>");
             }
         }
-        req.getRequestDispatcher("message/index.html").include(req, resp);
+        req.getRequestDispatcher("message/index.jsp").include(req, resp);
     }
 }

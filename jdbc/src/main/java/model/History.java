@@ -26,7 +26,6 @@ public class History {
         if (!m.isRead()){
             list.add(m);
         }
-        list.add(m);
     }
 
 
