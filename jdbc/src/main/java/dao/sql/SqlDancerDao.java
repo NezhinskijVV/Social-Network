@@ -34,7 +34,7 @@ public class SqlDancerDao implements DancerDao {
                              "email,password,telephone,style " +
                              "FROM dancers_network.dancer " +
                              "LEFT JOIN dancers_network.style " +
-                             "ON dancer.id= style.id")
+                             "ON dancer.style_id= style.id")
         ) {
             System.out.println("join");
             while (resultSet.next())
@@ -59,32 +59,35 @@ public class SqlDancerDao implements DancerDao {
     @Override
     public Dancer getById(long id) {
 
-//        Dancer dancer = null;
-//        try (Connection connection = connectionPool.getConnection();
-//             Statement statement = connection.createStatement();
-//             ResultSet resultSet = statement.executeQuery(
-//                     "SELECT  id,first_name,last_name,style,dob," +
-//                             "email,password,address,telephone " +
-//                             "FROM social_network.person WHERE socialNetwork.person.id =" + "'" + id + "'")
-//        ) {
-//            dancer = new Dancer(
-//                    resultSet.getLong("id"),
-//                    resultSet.getString("first_name"),
-//                    resultSet.getString("last_name"),
-//                    resultSet.getString("style"),
-//                    resultSet.getDate("dob").toLocalDate(),
-//                    resultSet.getString("email"),
-//                    resultSet.getString("password"),
-//                    resultSet.getString("address"),
-//                    resultSet.getString("telephone")
-//            );
-//        } catch (SQLException| ConnectionPoolException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return dancer;
-        return null;
+        System.out.println("getById");
+        Dancer dancer = null;
+
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(
+                     "SELECT dancer.id,first_name,last_name,dob,nickname,email,password,telephone,style" +
+                             " FROM dancers_network.dancer \n" +
+                             "LEFT JOIN dancers_network.style ON dancer.style_id=style.id WHERE dancer.id=" + id)
+        ) {
+            System.out.println("join");
+            while (resultSet.next())
+                dancer = new Dancer(
+                        resultSet.getLong("id"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getDate("dob").toLocalDate(),
+                        resultSet.getString("nickname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("telephone"),
+                        resultSet.getString("style")
+                );
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+        return dancer;
     }
+
 
     @Override
     public long isRegistered(String login, String hashPassword) {
@@ -94,7 +97,7 @@ public class SqlDancerDao implements DancerDao {
                      "SELECT id,email,password FROM dancers_network.dancer WHERE email='"
                              + login + "' AND password='" + hashPassword + "'")
         ) {
-            if( resultSet.next()){
+            if (resultSet.next()) {
                 //req.getSession().setAttribute("id", resultSet.getLong(1));
                 return resultSet.getLong(1);
             }
