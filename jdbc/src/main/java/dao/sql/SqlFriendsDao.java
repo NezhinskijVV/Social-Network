@@ -79,8 +79,6 @@ public class SqlFriendsDao implements FriendsDao {
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();
         }
-
-
         return dancers;
     }
 }

@@ -5,6 +5,7 @@ import dao.DancerDao;
 import dao.FriendsDao;
 import model.Dancer;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
  * Created by Nezhinskij VV on 18.01.2017.
  */
 @WebServlet("/friends")
@@ -31,7 +31,6 @@ public class Friends extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
-
     }
 
     @Override
@@ -39,11 +38,10 @@ public class Friends extends HttpServlet {
         long id = (long) req.getSession().getAttribute("id");
         System.out.println("out id" + id);
 
+        Collection<Dancer> friends = null;
         try {
-            Set<Dancer> set = new HashSet<>();
-           Collection<Dancer> dancers = friendsDao.getDancersById(id);
-
-            for (Dancer d :dancers
+            friends = friendsDao.getDancersById(id);
+            for (Dancer d : friends
                     ) {
                 System.out.println(d.getFirstName());
             }
@@ -51,5 +49,8 @@ public class Friends extends HttpServlet {
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }
+        req.setAttribute("dancers", friends);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/friends.jsp");
+        requestDispatcher.forward(req,res);
     }
 }
