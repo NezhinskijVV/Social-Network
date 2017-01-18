@@ -2,6 +2,7 @@ package model;
 
 /**
  * Created by Nezhinskij VV on 23.11.2016.
+ *
  */
 public class Style {
     private long id;

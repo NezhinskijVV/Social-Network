@@ -10,7 +10,7 @@ import java.io.IOException;
  * Created by Nezhinskij VV on 24.11.2016.
  */
 
-@WebServlet("/foruser")
+//@WebServlet("/foruser")
 public class UserContent extends HttpServlet {
 
     @Override

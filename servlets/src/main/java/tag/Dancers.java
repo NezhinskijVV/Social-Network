@@ -25,7 +25,6 @@ public class Dancers extends TagSupport{
     }
 
 
-
     private static String getDancerList(Collection<Dancer> dancers) throws IOException {
         StringBuilder out = new StringBuilder();
         for (Dancer dancer: dancers)

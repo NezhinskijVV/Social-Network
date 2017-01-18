@@ -1,4 +1,5 @@
 package controllers;
+
 import dao.DancerDao;
 import model.Dancer;
 
@@ -10,14 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
 /**
- * Created by Nezhinskij VV on 24.11.2016.
+ * Created by Nezhinskij VV on 02.12.2016.
  *
  */
-@WebServlet("/dancers")
-public class Dancers extends HttpServlet {
+@WebServlet({"/myPage","/foruser"})
+public class MyPage extends HttpServlet {
     private DancerDao dancerDao;
 
     @Override
@@ -27,9 +27,10 @@ public class Dancers extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Collection<Dancer>  dancers = dancerDao.getAll();
-        req.setAttribute("dancers", dancers);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/index.jsp");
+        long id = (long) req.getSession().getAttribute("id");
+        Dancer dancer = dancerDao.getById(id);
+        req.setAttribute("dancer", dancer);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/myPage.jsp");
         requestDispatcher.forward(req,resp);
     }
 }

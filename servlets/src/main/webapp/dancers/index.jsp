@@ -6,6 +6,7 @@
     <title> Танцоры </title>
 </head>
 <body>
+<%@ include file="menu.html" %>
 <jsp:useBean id="dancers" class="java.util.HashSet" scope="request"/>
 <table>
     <tr>

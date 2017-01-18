@@ -1,8 +1,10 @@
 import common.ConnectionPool;
 import common.ConnectionPoolException;
 import dao.DancerDao;
+import dao.FriendsDao;
 import dao.StyleDao;
 import dao.sql.SqlDancerDao;
+import dao.sql.SqlFriendsDao;
 import dao.sql.SqlStyleDao;
 import model.History;
 
@@ -31,9 +33,11 @@ public class Initer implements ServletContextListener {
         DancerDao dancerDao = new SqlDancerDao(connectionPool);
         StyleDao styleDao = new SqlStyleDao(connectionPool);
         History history = new History();
+        FriendsDao friendsDao = new SqlFriendsDao(connectionPool);
 
         context.setAttribute("styleDao", styleDao);
         context.setAttribute("dancerDao", dancerDao);
         context.setAttribute("history", history);
+        context.setAttribute("friendsDao", friendsDao);
     }
 }

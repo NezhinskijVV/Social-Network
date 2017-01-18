@@ -19,13 +19,7 @@
     </style>
 </head>
 <body>
-<ul class="hr">
-    <li><button>Моя страница</button></li>
-    <li><button>Друзья</button></li>
-    <li><button>Сообщения</button></li>
-    <li><button>Все танцоры</button></li>
-    <li><button>Выход</button></li>
-</ul>
+
 <form method="POST" action="../send">
     <input type="text" name="message" autocomplete="off">
     <input type="submit" value="Enter">
