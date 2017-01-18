@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ *
  * Created by Nezhinskij VV on 18.01.2017.
  */
 @WebServlet("/friends")
@@ -49,7 +50,7 @@ public class Friends extends HttpServlet {
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }
-        req.setAttribute("dancers", friends);
+        req.setAttribute("friends", friends);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/friends.jsp");
         requestDispatcher.forward(req,res);
     }

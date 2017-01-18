@@ -3,14 +3,14 @@
 
 <html>
 <head>
-    <title>Friends</title>
+    <title> Friends </title>
 </head>
 <body>
 <%@ include file="menu.html" %>
 <jsp:useBean id="friends" class="java.util.HashSet" scope="request"/>
 <table>
     <tr>
-        <th>friend</th>
+        <th>dancer</th>
         <th>style</th>
     </tr>
     <friends:list friends="${friends}"/>

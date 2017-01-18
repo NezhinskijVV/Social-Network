@@ -71,7 +71,8 @@ public class SqlDancerDao implements DancerDao {
                      "email,password,telephone,style " +
                      "FROM dancers_network.dancer " +
                      "LEFT JOIN dancers_network.style " +
-                     "ON dancer.style_id= style.id")
+                     "ON dancer.style_id= style.id "+
+             "WHERE dancer.id =  " + id)
         ) {
             System.out.println("join");
             while (resultSet.next())

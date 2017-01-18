@@ -25,7 +25,7 @@ public class Friends extends TagSupport {
     }
 
 
-    public static String getFriendsList(Collection<Dancer> friends)  {
+    private static String getFriendsList(Collection<Dancer> friends)  {
         StringBuilder stringBuilder = new StringBuilder();
         for (Dancer friend: friends)
             stringBuilder.append("<tr><td><a href=\"/dancer/?id=")
@@ -38,7 +38,7 @@ public class Friends extends TagSupport {
         return stringBuilder.toString();
     }
 
-    public void setDancers(Collection<Dancer> friends) {
+    public void setFriends(Collection<Dancer> friends) {
         this.friends = friends;
     }
 }
