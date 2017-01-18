@@ -41,5 +41,4 @@ public class Dancers extends TagSupport{
     public void setDancers(Collection<Dancer> dancers) {
         this.dancers = dancers;
     }
-
 }

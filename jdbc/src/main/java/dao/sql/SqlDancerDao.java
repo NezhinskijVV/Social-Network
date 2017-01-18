@@ -14,8 +14,10 @@ import java.util.HashSet;
 
 /**
  * Created by Nezhinskij VV on 17.11.2016.
+ *
  */
-@SuppressWarnings("ALL")
+
+@SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 public class SqlDancerDao implements DancerDao {
     private ConnectionPool connectionPool;
 
@@ -65,9 +67,11 @@ public class SqlDancerDao implements DancerDao {
         try (Connection connection = connectionPool.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
-                     "SELECT dancer.id,first_name,last_name,dob,nickname,email,password,telephone,style" +
-                             " FROM dancers_network.dancer \n" +
-                             "LEFT JOIN dancers_network.style ON dancer.style_id=style.id WHERE dancer.id=" + id)
+                     "SELECT dancer.id,first_name,last_name,dob,nickname," +
+                     "email,password,telephone,style " +
+                     "FROM dancers_network.dancer " +
+                     "LEFT JOIN dancers_network.style " +
+                     "ON dancer.style_id= style.id")
         ) {
             System.out.println("join");
             while (resultSet.next())

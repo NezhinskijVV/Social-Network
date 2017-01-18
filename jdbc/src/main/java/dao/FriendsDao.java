@@ -12,5 +12,6 @@ import java.util.Collection;
  *
  */
 public interface FriendsDao {
-    Collection<Long> getById(long id) throws ConnectionPoolException, SQLException;
+    Collection<Long> getIdsById(long id) throws ConnectionPoolException, SQLException;
+    Collection<Dancer> getDancersById(long id) throws ConnectionPoolException, SQLException;
 }

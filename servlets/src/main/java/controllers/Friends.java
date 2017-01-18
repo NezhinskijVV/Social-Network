@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ *
  * Created by Nezhinskij VV on 18.01.2017.
  */
 @WebServlet("/friends")
@@ -40,12 +41,12 @@ public class Friends extends HttpServlet {
 
         try {
             Set<Dancer> set = new HashSet<>();
-           Collection<Long> collection = friendsDao.getById(id);
-//
-//            for (Long l : collection
-//                    ) {
-//                set.add(dancerDao.getById(l));
-//            }
+           Collection<Dancer> dancers = friendsDao.getDancersById(id);
+
+            for (Dancer d :dancers
+                    ) {
+                System.out.println(d.getFirstName());
+            }
 
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
