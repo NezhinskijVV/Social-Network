@@ -1,7 +1,10 @@
 package controllers;
 
 
+import dao.DancerDao;
+
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +21,10 @@ public class WriteMessage extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
         System.out.println("session" + req.getSession().getId());
         System.out.println("substring" + req.getQueryString().substring(3));
         req.getSession().setAttribute("to_id", req.getQueryString().substring(3));
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

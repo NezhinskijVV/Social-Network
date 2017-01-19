@@ -25,12 +25,10 @@ import java.util.Set;
  */
 @WebServlet("/friends")
 public class Friends extends HttpServlet {
-    private DancerDao dancerDao;
     private FriendsDao friendsDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
     }
 

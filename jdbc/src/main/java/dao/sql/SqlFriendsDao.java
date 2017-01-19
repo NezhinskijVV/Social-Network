@@ -81,5 +81,21 @@ public class SqlFriendsDao implements FriendsDao {
         }
         return dancers;
     }
+
+    @Override
+    public boolean isFriend(long id, long friendsId) {
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(
+                     "SELECT * FROM dancers_network.friends" +
+                             " WHERE (dancer_id1 = "+id+" AND dancer_id2 ="+friendsId+") " +
+                             "OR (dancer_id1 = "+friendsId+" AND dancer_id2 = "+id+");")
+        ) {
+            if (resultSet.next()) return true;
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 

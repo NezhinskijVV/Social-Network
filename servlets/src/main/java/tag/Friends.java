@@ -31,9 +31,13 @@ public class Friends extends TagSupport {
             stringBuilder.append("<tr><td><a href=\"/dancer/?id=")
                     .append(friend.getId())
                     .append("\">")
+                    .append(friend.getFirstName())
+                    .append("</a></td><td>")
                     .append(friend.getNickname())
                     .append("</a></td><td>")
                     .append(friend.getStyle())
+                    .append("</a></td><td>")
+                    .append(friend.getTelephone())
                     .append("</td></tr>");
         return stringBuilder.toString();
     }
