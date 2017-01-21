@@ -15,4 +15,5 @@ public interface FriendsDao {
     Collection<Long> getIdsById(long id) throws ConnectionPoolException, SQLException;
     Collection<Dancer> getDancersById(long id) throws ConnectionPoolException, SQLException;
     boolean isFriend(long id, long friendsId);
+    void addFriend(long id, long friendId);
 }

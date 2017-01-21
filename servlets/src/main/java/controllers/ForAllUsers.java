@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.DancerDao;
 import dao.FriendsDao;
 
 import javax.servlet.RequestDispatcher;
@@ -18,10 +19,12 @@ import java.io.IOException;
 @WebServlet("/friend/")
 public class ForAllUsers extends HttpServlet {
     private FriendsDao friendsDao;
+    private DancerDao dancerDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
+        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
     }
 
     @Override
@@ -34,13 +37,14 @@ public class ForAllUsers extends HttpServlet {
         long id = (long) req.getSession().getAttribute("id");
         long friendsId = Long.parseLong(req.getQueryString().substring(3));
         req.getSession().setAttribute("to_id", friendsId);
+        req.getSession().setAttribute("name_of_friend", dancerDao.getById(friendsId).getNickname());
         if (friendsDao.isFriend(id, friendsId)) {
             System.out.println("is a friend");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
             requestDispatcher.forward(req, resp);
         } else {
             System.out.println("isn't  a friend");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/index.jsp");
             requestDispatcher.forward(req, resp);
         }
     }
