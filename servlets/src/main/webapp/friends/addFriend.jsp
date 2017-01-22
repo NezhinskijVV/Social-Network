@@ -11,13 +11,12 @@
     <title>New friend</title>
 </head>
 <body>
-<p>Хотите ли Вы добавить пользователя ${sessionScope.name_of_friend} в друзья?</p>
+<p>Вас хочет добавить  ${sessionScope.nameOfAddingFriend} в друзья. Принять заявку?</p>
 <%--<button><a href="/friends/confirmation.jsp"> Да</a></button>--%>
 <%--<button><a href="/dancers"> Нет</a></button>--%>
 <form method="POST" action="../friends">
-    <input type="button" name="addFriend" autocomplete="off">
-    <input type="submit" value="Да">
-    <button><a href="../dancers"> Нет</a></button>
+    <input type="submit" name="confirmAdding" value="Да">
+    <button><a href="../friends"> Нет</a></button>
 </form>
 </body>
 </html>

@@ -4,6 +4,7 @@ import common.ConnectionPoolException;
 import dao.DancerDao;
 import dao.FriendsDao;
 import model.Dancer;
+import model.FriendsContainer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -14,10 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -27,6 +25,7 @@ import java.util.Set;
 public class Friends extends HttpServlet {
     private FriendsDao friendsDao;
 
+    private static List<FriendsContainer> requestsOfFriends = new ArrayList<>();
     @Override
     public void init(ServletConfig config) throws ServletException {
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
@@ -36,15 +35,38 @@ public class Friends extends HttpServlet {
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         long id = (long) req.getSession().getAttribute("id");
         System.out.println("out id" + id);
+        Map<String, String[]> params = req.getParameterMap();
+        String name = (String) req.getSession().getAttribute("nameOfFriend");
 
-        Collection<Dancer> friends = null;
+        if (params.containsKey("addFriend")) {
+            System.out.println("addFriend");
+            long toId = (long) req.getSession().getAttribute("to_id");
+            requestsOfFriends.add(new FriendsContainer(id, toId,name ));
+        }  if (params.containsKey("confirmAdding")){
+            System.out.println("confirm adding");
+            System.out.println("name " + name);
+            req.getSession().setAttribute("nameOfAddingFriend", name);
+            long toId = (long) req.getSession().getAttribute("to_id");
+            requestsOfFriends.remove(new FriendsContainer(toId, id, name));
+            friendsDao.addFriend(toId,id);
+        }
+
+        for (FriendsContainer fc:requestsOfFriends
+             ) {
+            if (fc.getIdTo() == id){
+                req.getSession().setAttribute("to_id", fc.getIdFrom());
+                requestsOfFriends.remove(fc);
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/addFriend.jsp");
+                requestDispatcher.forward(req,res);
+            }
+        }
+            Collection<Dancer> friends = null;
         try {
             friends = friendsDao.getDancersById(id);
             for (Dancer d : friends
                     ) {
                 System.out.println(d.getFirstName());
             }
-
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }

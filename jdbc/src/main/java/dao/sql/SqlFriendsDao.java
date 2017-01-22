@@ -58,7 +58,7 @@ public class SqlFriendsDao implements FriendsDao {
                      "SELECT dancer.id, first_name,last_name,dob,nickname,email,password,telephone, style, dancer_id1,dancer_id2 " +
                              "FROM dancers_network.dancer " +
                              "LEFT JOIN dancers_network.style " +
-                             "ON dancer.style_id= style.id "+
+                             "ON dancer.style_id= style.id " +
                              "LEFT JOIN dancers_network.friends ON dancer.id=dancer_id1  OR dancer.id=dancer_id2 " +
                              "WHERE dancer_id2=" + id + " OR dancer_id1 =" + id + " GROUP BY dancer.id;")
         ) {
@@ -88,14 +88,26 @@ public class SqlFriendsDao implements FriendsDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
                      "SELECT * FROM dancers_network.friends" +
-                             " WHERE (dancer_id1 = "+id+" AND dancer_id2 ="+friendsId+") " +
-                             "OR (dancer_id1 = "+friendsId+" AND dancer_id2 = "+id+");")
+                             " WHERE (dancer_id1 = " + id + " AND dancer_id2 =" + friendsId + ") " +
+                             "OR (dancer_id1 = " + friendsId + " AND dancer_id2 = " + id + ");")
         ) {
             if (resultSet.next()) return true;
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void addFriend(long id, long friendId) {
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(
+                    "INSERT INTO dancers_network.friends (dancer_id1,dancer_id2) VALUES("+id+","+friendId+");");
+
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+        }
     }
 }
 
