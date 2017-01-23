@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<p>Хотите ли Вы добавить пользователя ${sessionScope.nameOfFriend} в друзья?</p>
+<p>Хотите ли Вы добавить пользователя ${sessionScope.nameOfFriend} ${sessionScope.nameOfAddingFriend} в друзья?</p>
 <%--<button><a href="../friends/confirmation.jsp"> Да</a></button>--%>
 <%--<button><a href="../dancers"> Нет</a></button>--%>
 <form method="POST" action="../friends">

@@ -24,11 +24,13 @@ import java.util.*;
 @WebServlet("/friends")
 public class Friends extends HttpServlet {
     private FriendsDao friendsDao;
+    private DancerDao dancerDao;
 
     private static List<FriendsContainer> requestsOfFriends = new ArrayList<>();
     @Override
     public void init(ServletConfig config) throws ServletException {
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
+        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
     }
 
     @Override
@@ -36,18 +38,16 @@ public class Friends extends HttpServlet {
         long id = (long) req.getSession().getAttribute("id");
         System.out.println("out id" + id);
         Map<String, String[]> params = req.getParameterMap();
-        String name = (String) req.getSession().getAttribute("nameOfFriend");
 
         if (params.containsKey("addFriend")) {
             System.out.println("addFriend");
             long toId = (long) req.getSession().getAttribute("to_id");
-            requestsOfFriends.add(new FriendsContainer(id, toId,name ));
+            FriendsContainer fc = new FriendsContainer(id, toId);
+            requestsOfFriends.add(fc);
         }  if (params.containsKey("confirmAdding")){
             System.out.println("confirm adding");
-            System.out.println("name " + name);
-            req.getSession().setAttribute("nameOfAddingFriend", name);
             long toId = (long) req.getSession().getAttribute("to_id");
-            requestsOfFriends.remove(new FriendsContainer(toId, id, name));
+            requestsOfFriends.remove(new FriendsContainer(toId, id));
             friendsDao.addFriend(toId,id);
         }
 
@@ -55,6 +55,7 @@ public class Friends extends HttpServlet {
              ) {
             if (fc.getIdTo() == id){
                 req.getSession().setAttribute("to_id", fc.getIdFrom());
+                req.getSession().setAttribute("nameOfAddingFriend", dancerDao.getById(fc.getIdFrom()).getNickname());
                 requestsOfFriends.remove(fc);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/addFriend.jsp");
                 requestDispatcher.forward(req,res);
