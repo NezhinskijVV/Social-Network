@@ -22,8 +22,9 @@ public class WriteMessage extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("session" + req.getSession().getId());
-        System.out.println("substring" + req.getQueryString().substring(3));
-        req.getSession().setAttribute("to_id", req.getQueryString().substring(3));
+        System.out.println("QUERYSTRING " + req.getQueryString());
+        System.out.println("substring " + req.getQueryString().substring(3));
+        req.getSession().setAttribute("to_id", Long.parseLong(req.getQueryString().substring(3)));
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
         requestDispatcher.forward(req, resp);
     }
