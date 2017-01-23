@@ -11,12 +11,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-//@WebFilter("/foruser")
 @WebFilter("/*")
 public class SecurityFilter implements HttpFilter {
-
-    // TODO: 18.01.2017  security for all requests
-
     private final static String KEY = "key";
     private final static String KEY2 = "key2";
     private DancerDao dancerDao;
