@@ -18,8 +18,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- *
  * Created by Nezhinskij VV on 18.01.2017.
+ *
  */
 @WebServlet("/friends")
 public class Friends extends HttpServlet {
@@ -27,6 +27,7 @@ public class Friends extends HttpServlet {
     private DancerDao dancerDao;
 
     private static List<FriendsContainer> requestsOfFriends = new ArrayList<>();
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         friendsDao = (FriendsDao) config.getServletContext().getAttribute("friendsDao");
@@ -44,24 +45,25 @@ public class Friends extends HttpServlet {
             long toId = (long) req.getSession().getAttribute("to_id");
             FriendsContainer fc = new FriendsContainer(id, toId);
             requestsOfFriends.add(fc);
-        }  if (params.containsKey("confirmAdding")){
+        }
+        if (params.containsKey("confirmAdding")) {
             System.out.println("confirm adding");
             long toId = (long) req.getSession().getAttribute("to_id");
             requestsOfFriends.remove(new FriendsContainer(toId, id));
-            friendsDao.addFriend(toId,id);
+            friendsDao.addFriend(toId, id);
         }
 
-        for (FriendsContainer fc:requestsOfFriends
-             ) {
-            if (fc.getIdTo() == id){
+        for (FriendsContainer fc : requestsOfFriends
+                ) {
+            if (fc.getIdTo() == id) {
                 req.getSession().setAttribute("to_id", fc.getIdFrom());
                 req.getSession().setAttribute("nameOfAddingFriend", dancerDao.getById(fc.getIdFrom()).getNickname());
                 requestsOfFriends.remove(fc);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/addFriend.jsp");
-                requestDispatcher.forward(req,res);
+                requestDispatcher.forward(req, res);
             }
         }
-            Collection<Dancer> friends = null;
+        Collection<Dancer> friends = null;
         try {
             friends = friendsDao.getDancersById(id);
             for (Dancer d : friends
@@ -73,6 +75,6 @@ public class Friends extends HttpServlet {
         }
         req.setAttribute("friends", friends);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/friends.jsp");
-        requestDispatcher.forward(req,res);
+        requestDispatcher.forward(req, res);
     }
 }

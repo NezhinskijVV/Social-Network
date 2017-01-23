@@ -38,7 +38,7 @@ public class SendMessage extends HttpServlet {
         // todo:  сделать через JSP
 
         long idDancer = (long) req.getSession().getAttribute("id");
-        long idDancer2 = (long)req.getSession().getAttribute("to_id");
+        long idDancer2 = (long) req.getSession().getAttribute("to_id");
         String message = req.getParameter("message");
 
         Dancer dancer2 = dancerDao.getById(idDancer2);

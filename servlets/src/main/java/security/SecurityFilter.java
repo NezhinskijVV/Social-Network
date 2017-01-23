@@ -11,9 +11,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-@WebFilter("/foruser")
+//@WebFilter("/foruser")
+@WebFilter("/*")
 public class SecurityFilter implements HttpFilter {
-    
+
     // TODO: 18.01.2017  security for all requests
 
     private final static String KEY = "key";
@@ -30,23 +31,21 @@ public class SecurityFilter implements HttpFilter {
             throws IOException, ServletException {
 
         HttpSession session = request.getSession(true);
-        if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {
-            //System.out.println("IT's okay");
-            chain.doFilter(request, response);
-        }
-
         Map<String, String[]> params = request.getParameterMap();
-        if (params.containsKey("j_username") && params.containsKey("j_password")) {
+        if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {
+            System.out.println("IT's okay");
+            chain.doFilter(request, response);
+        } else if (params.containsKey("j_username") && params.containsKey("j_password")) {
             long id = authorize(params);
             if (id > 0) {
                 session.setAttribute(KEY, new Object());
-              //  System.out.println( "WRITE THIS KEY" + session.getAttribute(KEY));
+                System.out.println("WRITE THIS KEY" + session.getAttribute(KEY));
                 session.setAttribute("id", id);
                 chain.doFilter(request, response);
             } else request.getRequestDispatcher("user/loginError.jsp").forward(request, response);
         } else {
-            //System.out.println("attribute KEY from current session: " + session.getAttribute(KEY));
-            //System.out.println("attribute KEY2 from current session: " + session.getAttribute(KEY2));
+            System.out.println("attribute KEY from current session: " + session.getAttribute(KEY));
+            System.out.println("attribute KEY2 from current session: " + session.getAttribute(KEY2));
             RequestDispatcher dispatcher = request.getRequestDispatcher("user/loginUser.html");
             dispatcher.forward(request, response);
         }
