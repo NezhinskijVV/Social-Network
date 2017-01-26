@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>ERROR</title>
-    <meta http-equiv="Refresh" content="3; url=user/loginUser.html">
+    <meta http-equiv="Refresh" content="3; url=loginUser.html">
 </head>
 <body>
 ERROR! Not valid name or password!

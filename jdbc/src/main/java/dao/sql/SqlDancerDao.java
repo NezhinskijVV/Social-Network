@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 /**
@@ -68,11 +69,11 @@ public class SqlDancerDao implements DancerDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
                      "SELECT dancer.id,first_name,last_name,dob,nickname," +
-                     "email,password,telephone,style " +
-                     "FROM dancers_network.dancer " +
-                     "LEFT JOIN dancers_network.style " +
-                     "ON dancer.style_id= style.id "+
-             "WHERE dancer.id =  " + id)
+                             "email,password,telephone,style " +
+                             "FROM dancers_network.dancer " +
+                             "LEFT JOIN dancers_network.style " +
+                             "ON dancer.style_id= style.id " +
+                             "WHERE dancer.id =  " + id)
         ) {
             System.out.println("join");
             while (resultSet.next())
@@ -93,6 +94,23 @@ public class SqlDancerDao implements DancerDao {
         return dancer;
     }
 
+    @Override
+    public boolean existingEmail(String email) {
+        System.out.println("existing email?");
+
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(
+                     "SELECT email FROM dancers_network.dancer WHERE email =  '" + email + "'; ")) {
+            return resultSet.first();
+
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     @Override
     public long isRegistered(String login, String hashPassword) {
@@ -110,5 +128,22 @@ public class SqlDancerDao implements DancerDao {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    @Override
+    public void register(String name, String surname, Date dob, String nickname, String email,
+                         String password, String telephone, long style) {
+
+        try (Connection connection = connectionPool.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate(
+                    "INSERT INTO dancers_network.dancer (first_name,last_name, dob, nickname, " +
+                            "email,password, telephone, style_id) \n" +
+                            "VALUES( '" + name + "' , '" + surname + "' , '" + dob + "' , '" + nickname + "' , '"
+                            + email + "' , '" + password + "' , '" + telephone + "' , " + style + ");");
+
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+        }
     }
 }

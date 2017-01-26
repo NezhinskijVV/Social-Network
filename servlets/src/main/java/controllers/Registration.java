@@ -1,0 +1,46 @@
+package controllers;
+
+import dao.DancerDao;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.Map;
+
+/**
+ *
+ * Created by Nezhinskij VV on 25.01.2017.
+ */
+@WebServlet("/register")
+public class Registration extends HttpServlet {
+    private DancerDao dancerDao;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(true);
+        Map<String, String[]> params = req.getParameterMap();
+        String email = params.get("email")[0].trim().toLowerCase();
+
+        if (!dancerDao.existingEmail(email)) {
+            System.out.println("email not existing");
+            String password = params.get("password")[0];
+            if (password.equals(params.get("confirmpassword")[0])) {
+                dancerDao.register(params.get("name")[0], params.get("surname")[0],
+                        Date.valueOf(params.get("dob")[0]), params.get("nickname")[0],
+                        email, password, params.get("telephone")[0], Long.parseLong(params.get("option")[0]));
+                req.getRequestDispatcher("user/confirmation.html").forward(req, resp);
+            } else req.getRequestDispatcher("user/registrationError.html").forward(req, resp);
+        } else req.getRequestDispatcher("user/registrationError.html").forward(req, resp);
+    }
+}
