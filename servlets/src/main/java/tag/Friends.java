@@ -34,9 +34,9 @@ public class Friends extends TagSupport {
                     .append(friend.getFirstName())
                     .append("</a></td><td>")
                     .append(friend.getNickname())
-                    .append("</a></td><td>")
+                    .append("</td><td>")
                     .append(friend.getStyle())
-                    .append("</a></td><td>")
+                    .append("</td><td>")
                     .append(friend.getTelephone())
                     .append("</td></tr>");
         return stringBuilder.toString();

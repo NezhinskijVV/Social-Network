@@ -9,6 +9,7 @@ import java.util.Collection;
 
 /**
  *
+ *
  * Created by Nezhinskij VV on 24.11.2016.
  */
 public class Dancers extends TagSupport{
@@ -33,9 +34,11 @@ public class Dancers extends TagSupport{
                     .append(dancer.getId())
                     .append("\">")
                     .append(dancer.getNickname())
-                    .append("</a></td><td>")
+                    .append("</a></td><td><a href=\"/style/")
                     .append(dancer.getStyle())
-                    .append("</td></tr>");
+                    .append(".html\">")
+                    .append(dancer.getStyle())
+                    .append("</a></td></tr>");
         return out.toString();
     }
 

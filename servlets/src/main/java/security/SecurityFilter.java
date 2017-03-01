@@ -28,14 +28,13 @@ public class SecurityFilter implements HttpFilter {
 
         HttpSession session = request.getSession(true);
         System.out.println("request url: " + request.getRequestURL().toString());
-        System.out.println("request url: " + request.getRequestURL().toString().equals("http://localhost:8080/registration.html"));
-        System.out.println("request url: " + request.getRequestURL().toString().contains("/registration.html"));
+        System.out.println("request url: " + request.getRequestURL().toString().equals("http://localhost:8080/registration.jsp"));
+        System.out.println("request url: " + request.getRequestURL().toString().contains("/registration.jsp"));
 
 
         if (request.getRequestURL().toString().contains("/regist")) {
             System.out.println("registration");
             chain.doFilter(request, response);
-            //request.getRequestDispatcher("registration.html").forward(request, response);
         } else {
             Map<String, String[]> params = request.getParameterMap();
             if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {

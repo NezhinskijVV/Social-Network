@@ -4,13 +4,14 @@
 <head>
     <title>My page</title>
 </head>
-<body>
+<body bgcolor="#ADD8E6">
 <%@ include file="menu.html" %>
 
 <jsp:useBean id="dancer" class="java.lang.Object" scope="request"/>
 
-<%--First Name: --%>
 <page:dancer dancer="${dancer}"/>
+
+<%--First Name: --%>
 <%--Last Name: <page:dancer dancer="${dancer.lastName}"/>--%>
 <%--Nickname: <page:dancer dancer="${dancer.nickname}"/>--%>
 <%--Style: <page:dancer dancer="${dancer.style}"/>--%>

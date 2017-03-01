@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="stylesOfDance" uri="http://stylesOfDance.com" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,12 +31,15 @@
     <input type="text" name="telephone" pattern="^[ 0-9]+$" required>
     <p>Style:</p>
     <!--todo взаимодействие с базой-->
-    <input type="radio" name="option" value="1" >hip hop<br>
-    <input type="radio" name="option" value="2" >electro<br>
-    <input type="radio" name="option" value="3" >popping<br>
-    <input type="radio" name="option" value="4" >dancehall<br>
-    <input type="radio" name="option" value="5" >locking<br>
-    <input type="radio" name="option" value="6" >rumba<br>
+    <jsp:useBean id="styles" class="java.util.HashSet" scope="request"/>
+    <table>
+        <stylesOfDance:list styles="${styles}"/>
+    </table>
+    <%--<input type="radio" name="option" value="2" >electro<br>--%>
+    <%--<input type="radio" name="option" value="3" >popping<br>--%>
+    <%--<input type="radio" name="option" value="4" >dancehall<br>--%>
+    <%--<input type="radio" name="option" value="5" >locking<br>--%>
+    <%--<input type="radio" name="option" value="6" >rumba<br>--%>
     <p><input type="submit" value="Register"></p>
 </form>
 </body>

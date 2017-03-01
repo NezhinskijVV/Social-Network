@@ -29,12 +29,10 @@ public class SqlStyleDao implements StyleDao {
         try (
                 Connection connection = connectionPool.getConnection();
                 Statement st = connection.createStatement();
-                ResultSet resultSet = st.executeQuery("SELECT id,style,classic"+
-                        " FROM dancers_network.style")
-        ) {
+                ResultSet resultSet = st.executeQuery("SELECT id,style FROM dancers_network.style;")
+                ) {
             while (resultSet.next()){
-                boolean classical=(resultSet.getByte("classic") == 1);
-                stylesOfDance.add(new Style(resultSet.getLong("id"), resultSet.getString("style"),classical));
+                stylesOfDance.add(new Style(resultSet.getLong("id"), resultSet.getString("style")));
             }
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();

@@ -7,12 +7,10 @@ package model;
 public class Style {
     private long id;
     private String style;
-    private boolean classic;
 
-    public Style(long id, String style, boolean classic) {
+    public Style(long id, String style) {
         this.id = id;
         this.style = style;
-        this.classic = classic;
     }
 
     public long getId() {
@@ -25,13 +23,5 @@ public class Style {
 
     public void setStyle(String style) {
         this.style = style;
-    }
-
-    public boolean isClassic() {
-        return classic;
-    }
-
-    public void setClassic(boolean classic) {
-        this.classic = classic;
     }
 }

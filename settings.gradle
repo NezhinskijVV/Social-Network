@@ -1,4 +1,4 @@
-rootProject.name='Social-Network'
+rootProject.name = 'Social-Network'
 include 'core',
         'jdbc',
         'servlets'
