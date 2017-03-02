@@ -1,13 +1,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-
-        ul.hr li {
-            display: inline; /* Отображать как строчный элемент */
-        }
-    </style>
+    <link href="../decoration/style.css" rel="stylesheet">
+    <title>Messages</title>
 </head>
 <body>
 

@@ -1,7 +1,6 @@
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 /**
@@ -19,11 +18,9 @@ public class CharsetFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        request.setCharacterEncoding(encoding);
-//        response.setCharacterEncoding(encoding);
 
-        request.setCharacterEncoding("windows-1251");
-        response.setCharacterEncoding("windows-1251");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         LOG.info("Charset was set.");
         chain.doFilter(request,response);
     }

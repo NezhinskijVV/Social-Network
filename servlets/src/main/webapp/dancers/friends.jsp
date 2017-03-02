@@ -3,6 +3,8 @@
 
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link href="../decoration/style.css" rel="stylesheet">
     <title> Friends </title>
 </head>
 <body>

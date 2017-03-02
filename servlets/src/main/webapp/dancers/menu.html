@@ -1,8 +1,8 @@
-<!--TODO: кодировка-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <link href="../decoration/style.css" rel="stylesheet">
     <title>Menu</title>
     <style>
         a {
@@ -16,30 +16,34 @@
         /*<!--right: 10px; !* Расстояние от правого края окна браузера *!-->*/
         /*<!--top: 20%; !* Расстояние сверху *!-->*/
         /*<!--padding: 10px; !* Поля вокруг текста *!-->*/
-        /*<!--background: #ffe; !* Цвет фона *!-->*/
+
+        background: #006400;
         /*<!--border: 1px solid #333; !* Параметры рамки *!-->*/
         }
         ul.hr li {
             display: inline; /* Отображать как строчный элемент */
+        }
+        ul.hr button{
+            background: #90EE90;
         }
     </style>
 </head>
 <body>
 <ul class="hr">
     <li><button><a href="/myPage">
-        <img src="../images/mypage.jpg" alt="" style="vertical-align:middle">
+        <img src="../decoration/images/mypage.jpg" alt="" style="vertical-align:middle">
          My page</a></button></li>
     <li><button><a href="/friends">
-        <img src="../images/friends.jpg" alt="" style="vertical-align:middle">
+        <img src="../decoration/images/friends.jpg" alt="" style="vertical-align:middle">
          Friends</a></button></li>
     <li><button>
-        <img src="../images/messages.jpg" alt="" style="vertical-align:middle">
+        <img src="../decoration/images/messages.jpg" alt="" style="vertical-align:middle">
         Messages</button></li>
     <li><button><a href="/dancers">
-        <img src="../images/alldancers.jpg" alt="" style="vertical-align:middle">
+        <img src="../decoration/images/alldancers.jpg" alt="" style="vertical-align:middle">
         All dancers </a></button></li>
     <li><button><a href="/logout">
-        <img src="../images/logout.jpg" alt="" style="vertical-align:middle">
+        <img src="../decoration/images/logout.jpg" alt="" style="vertical-align:middle">
         Logout</a></button></li>
 </ul>
 </body>
