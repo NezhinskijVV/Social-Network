@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form method="POST" action="../send">
+<form method="POST" action="">
     <input type="text" name="message" autocomplete="off">
     <input type="submit" value="Enter">
     <button><a href="../friends"> Back</a></button>

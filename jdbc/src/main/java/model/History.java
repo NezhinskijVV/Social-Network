@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -8,7 +10,6 @@ import java.util.ArrayList;
  */
 public class History {
     private ArrayList<MessageContainer> list;
-    //private ArrayList<MessageContainer> isntReadList;
 
     public History() {
         list = new ArrayList<>();
@@ -28,5 +29,22 @@ public class History {
         }
     }
 
+    public int notReadMessages(long id){
+        int res = 0;
+        for (MessageContainer m : list
+                )
+            if ( !m.isRead() & (id == m.getidDancer2())) res++;
+        return res;
+    }
+
+    public Set<Long> fromNotReadMessages(long id){
+        Set<Long> listOfDancers = new HashSet<>();
+        for (MessageContainer m : list
+                )
+            if ( !m.isRead() & (id == m.getidDancer2())){
+                listOfDancers.add(m.getidDancer());
+            }
+            return listOfDancers;
+    }
 
 }

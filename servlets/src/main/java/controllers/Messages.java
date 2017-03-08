@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.*;
 
 /**
- * Created by Nezhinskij VV on 02.12.2016.
+ * Created by Nezhinskij VV on 07.03.2017.
  *
  */
-@WebServlet({"/myPage","/foruser"})
-public class MyPage extends HttpServlet {
+@WebServlet("/messages")
+public class Messages extends HttpServlet {
     private History history;
     private DancerDao dancerDao;
 
@@ -28,15 +29,17 @@ public class MyPage extends HttpServlet {
         dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
     }
 
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long id = (long) req.getSession().getAttribute("id");
-        Dancer dancer = dancerDao.getById(id);
-        req.setAttribute("dancer", dancer);
-        int countOfNotRead = history.notReadMessages(id);
-        System.out.println("COUNT:" + countOfNotRead);
-        if (countOfNotRead != 0) req.setAttribute("notReadMessages", countOfNotRead);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/myPage.jsp");
-        requestDispatcher.forward(req,resp);
+        Set<Dancer> fromNotReadMessages = new HashSet<>();
+        Set<Long> set = history.fromNotReadMessages((Long) req.getSession().getAttribute("id"));
+        for (Long l : set
+                ) {
+            fromNotReadMessages.add(dancerDao.getById(l));
+        }
+        req.setAttribute("fromMessages", fromNotReadMessages);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/messages.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

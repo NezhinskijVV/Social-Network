@@ -1,30 +1,64 @@
 package controllers;
 
 
-
+import dao.DancerDao;
+import model.Dancer;
+import model.History;
+import model.MessageContainer;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
- *
  * Created by Nezhinskij VV on 25.11.2016.
+ *
  */
 @WebServlet("/dancer/")
 public class WriteMessage extends HttpServlet {
+    private History history;
+    private DancerDao dancerDao;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        history = (History) config.getServletContext().getAttribute("history");
+        dancerDao = (DancerDao) config.getServletContext().getAttribute("dancerDao");
+    }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("session" + req.getSession().getId());
-        System.out.println("QUERYSTRING " + req.getQueryString());
-        System.out.println("substring " + req.getQueryString().substring(3));
-        req.getSession().setAttribute("to_id", Long.parseLong(req.getQueryString().substring(3)));
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
-        requestDispatcher.forward(req, resp);
-    }
+        // todo:  два листа прочитанных и нет и запись в базу
+        // todo:  сделать через JSP
+
+        long idDancer = (long) req.getSession().getAttribute("id");
+        long idDancer2 = Long.parseLong(req.getQueryString().substring(3));
+        String message = req.getParameter("message");
+
+        Dancer dancer2 = dancerDao.getById(idDancer2);
+        Dancer dancer = dancerDao.getById(idDancer);
+
+        if ((message != null) && !message.equals("")) {
+            MessageContainer messageContainer = new MessageContainer(idDancer, idDancer2, message, false);
+            history.addToHistory(messageContainer);
+        }
+
+        PrintWriter out = resp.getWriter();
+        ArrayList<MessageContainer> list = history.getList();
+        for (MessageContainer m : list
+                ) {
+            if ((idDancer == m.getidDancer()) && (idDancer2 == m.getidDancer2())) {
+                out.println("<br>" + dancer.getNickname() + ": " + m.getMessage() + "</br>");
+            } else if ((idDancer == m.getidDancer2()) && (idDancer2 == m.getidDancer())) {
+                out.println("<br>" + dancer2.getNickname() + ": " + m.getMessage() + "</br>");
+                m.setRead();
+            }
+        }
+        req.getRequestDispatcher("/message/index.jsp").include(req, resp);    }
 }

@@ -1,11 +1,11 @@
 package model;
 
 /**
- *
  * Created by Nezhinskij VV on 25.11.2016.
+ *
  */
 public class MessageContainer {
-    private long  idDancer;
+    private long idDancer;
     private long idDancer2;
     private String message;
     private boolean isRead;
@@ -23,6 +23,10 @@ public class MessageContainer {
 
     public boolean isRead() {
         return isRead;
+    }
+
+    public void setRead() {
+        isRead = true;
     }
 
     public long getidDancer() {

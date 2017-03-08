@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,19 +30,21 @@
 </head>
 <body>
 <ul class="hr">
-    <li><button><a href="/myPage">
+    <li><button><a href="${pageContext.request.contextPath}/myPage">
         <img src="../decoration/images/mypage.jpg" alt="" style="vertical-align:middle">
          My page</a></button></li>
-    <li><button><a href="/friends">
+    <li><button><a href="${pageContext.request.contextPath}/friends">
         <img src="../decoration/images/friends.jpg" alt="" style="vertical-align:middle">
          Friends</a></button></li>
-    <li><button>
+    <li><button><a href="${pageContext.request.contextPath}/messages">
         <img src="../decoration/images/messages.jpg" alt="" style="vertical-align:middle">
-        Messages</button></li>
-    <li><button><a href="/dancers">
+
+        Messages  + <%=request.getAttribute("notReadMessages")%> </button></li>
+    <%--todo: without scriplet--%>
+    <li><button><a href="${pageContext.request.contextPath}/dancers">
         <img src="../decoration/images/alldancers.jpg" alt="" style="vertical-align:middle">
         All dancers </a></button></li>
-    <li><button><a href="/logout">
+    <li><button><a href="${pageContext.request.contextPath}/logout">
         <img src="../decoration/images/logout.jpg" alt="" style="vertical-align:middle">
         Logout</a></button></li>
 </ul>

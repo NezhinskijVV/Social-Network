@@ -8,7 +8,7 @@
     <title> Friends </title>
 </head>
 <body>
-<%@ include file="menu.html" %>
+<%@ include file="menu.jsp" %>
 <jsp:useBean id="friends" class="java.util.HashSet" scope="request"/>
 <table>
     <tr>
