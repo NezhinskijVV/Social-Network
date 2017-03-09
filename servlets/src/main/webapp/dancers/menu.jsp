@@ -16,9 +16,15 @@
         ul.hr li {
             display: inline; /* Отображать как строчный элемент */
         }
+        ul.hr a{
+            text-align: left;
+        }
 
         ul.hr button {
+            text-align: left;
             background: #90EE90;
+            width: 220px;
+            height:120px;
         }
     </style>
 </head>
