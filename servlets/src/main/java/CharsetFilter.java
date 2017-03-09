@@ -18,7 +18,7 @@ public class CharsetFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
+        System.out.println("CHARSET FILTER");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         LOG.info("Charset was set.");

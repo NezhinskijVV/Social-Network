@@ -17,5 +17,26 @@
         <filter-name>CharsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <display-name>Security</display-name>
+        <filter-name>Security</filter-name>
+        <filter-class>security.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Security</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <display-name>SessionFilter</display-name>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/friends</url-pattern>
+        <url-pattern>/messages</url-pattern>
+        <url-pattern>/myPage</url-pattern>
+        <url-pattern>/dancers</url-pattern>
+    </filter-mapping>
 
 </web-app>

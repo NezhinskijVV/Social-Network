@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by Nezhinskij VV on 02.12.2016.
  *
  */
-@WebServlet({"/myPage","/foruser"})
+@WebServlet({"/myPage", "/foruser"})
 public class MyPage extends HttpServlet {
     private History history;
     private DancerDao dancerDao;
@@ -33,10 +33,8 @@ public class MyPage extends HttpServlet {
         long id = (long) req.getSession().getAttribute("id");
         Dancer dancer = dancerDao.getById(id);
         req.setAttribute("dancer", dancer);
-        int countOfNotRead = history.notReadMessages(id);
-        System.out.println("COUNT:" + countOfNotRead);
-        if (countOfNotRead != 0) req.setAttribute("notReadMessages", countOfNotRead);
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/myPage.jsp");
-        requestDispatcher.forward(req,resp);
+        requestDispatcher.forward(req, resp);
     }
 }

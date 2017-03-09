@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class SecurityFilter implements HttpFilter {
     private final static String KEY = "key";
     private final static String KEY2 = "key2";
@@ -25,12 +25,8 @@ public class SecurityFilter implements HttpFilter {
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-
+        System.out.println("SECURITY FILTER");
         HttpSession session = request.getSession(true);
-        System.out.println("request url: " + request.getRequestURL().toString());
-        System.out.println("request url: " + request.getRequestURL().toString().equals("http://localhost:8080/registration.jsp"));
-        System.out.println("request url: " + request.getRequestURL().toString().contains("/registration.jsp"));
-
 
         if (request.getRequestURL().toString().contains("/regist")) {
             System.out.println("registration");
@@ -45,6 +41,7 @@ public class SecurityFilter implements HttpFilter {
                 if (id > 0) {
                     session.setAttribute(KEY, new Object());
                     System.out.println("WRITE THIS KEY" + session.getAttribute(KEY));
+                    System.out.println("SET ID");
                     session.setAttribute("id", id);
                     chain.doFilter(request, response);
                 } else request.getRequestDispatcher("user/loginError.jsp").forward(request, response);
