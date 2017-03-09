@@ -2,13 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <link href="../decoration/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
     <style>
+        BODY{
+            background-color: #b8edb9;
+            font-family: Verdana, serif;
+            font-size: 14pt;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
         p {
             margin-top: 0.5em; /* Отступ сверху */
             margin-bottom: 0.5em; /* Отступ снизу */
         }
+        .b1 {
+            background:  #006400;
+            color: white;
+            font-size: 16pt;
+            padding: 3px;
+            width: 120px;
+            height:30px;
+        }
     </style>
+    <title>Registration</title>
 </head>
 <body>
 <form method="POST" action="../register">
@@ -39,7 +58,7 @@
     <%--<input type="radio" name="option" value="4" >dancehall<br>--%>
     <%--<input type="radio" name="option" value="5" >locking<br>--%>
     <%--<input type="radio" name="option" value="6" >rumba<br>--%>
-    <p><input type="submit" value="Register"></p>
+    <p><input class="b1" type="submit" value="Register"></p>
 </form>
 </body>
 </html>

@@ -28,3 +28,34 @@ span.information{
     font-size: 14pt;
     color : #696969;
 }
+a{
+    text-decoration: none;
+}
+p {
+    margin-top: 0.5em; /* Отступ сверху */
+    margin-bottom: 0.5em; /* Отступ снизу */
+}
+.b1 {
+    background:  #006400;
+    color: white;
+    font-size: 16pt;
+    padding: 3px;
+    width: 120px;
+    height:30px;
+}
+.b2 {
+    background:  #006400;
+    color: white;
+    font-size: 12pt;
+    padding: 3px;
+    width: 250px;
+    height:30px;
+}
+
+.b3 {
+    font-size: 12pt;
+    padding: 3px;
+    width: 250px;
+    height:30px;
+}
+

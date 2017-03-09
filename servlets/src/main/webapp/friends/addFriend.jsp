@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link href="../decoration/style.css" rel="stylesheet">
     <title>New friend</title>
 </head>
 <body>
@@ -15,8 +17,8 @@
 <%--<button><a href="/friends/confirmation.jsp"> Да</a></button>--%>
 <%--<button><a href="/dancers"> Нет</a></button>--%>
 <form method="POST" action="../friends">
-    <input type="submit" name="confirmAdding" value="Да">
-    <button><a href="../friends"> Нет</a></button>
+    <input class="b1" type="submit" name="confirmAdding" value="Да">
+    <button class="b1"><a href="../friends"> Нет</a></button>
 </form>
 </body>
 </html>

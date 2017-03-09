@@ -8,8 +8,8 @@
 
 <form method="POST" action="">
     <input type="text" name="message" autocomplete="off">
-    <input type="submit" value="Enter">
-    <button><a href="../friends"> Back</a></button>
+    <input class="b1" type="submit" value="Enter">
+    <button class="b1" onclick="history.back();"> Back</button>
 </form>
 
 </body>

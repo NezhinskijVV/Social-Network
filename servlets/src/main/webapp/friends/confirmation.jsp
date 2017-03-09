@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link href="../decoration/style.css" rel="stylesheet">
     <title>Confirmation</title>
     <meta http-equiv="Refresh" content="3; url= ../dancers">
 </head>

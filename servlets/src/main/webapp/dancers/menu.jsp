@@ -5,9 +5,6 @@
     <link href="../decoration/style.css" rel="stylesheet">
     <title>Menu</title>
     <style>
-        a {
-            text-decoration: none; /* Отменяем подчеркивание у ссылки */
-        }
         ul.hr {
             text-decoration: none;
             margin: 0; /* Обнуляем значение отступов */
