@@ -7,11 +7,13 @@ import dao.sql.SqlDancerDao;
 import dao.sql.SqlFriendsDao;
 import dao.sql.SqlStyleDao;
 import model.History;
+import model.Style;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.util.Collection;
 
 /**
  *
@@ -39,5 +41,7 @@ public class Initer implements ServletContextListener {
         context.setAttribute("dancerDao", dancerDao);
         context.setAttribute("history", history);
         context.setAttribute("friendsDao", friendsDao);
+
+
     }
 }

@@ -2,13 +2,13 @@ package controllers;
 
 import dao.DancerDao;
 
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Map;
@@ -28,7 +28,6 @@ public class Registration extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
         Map<String, String[]> params = req.getParameterMap();
         String email = params.get("email")[0].trim().toLowerCase();
 

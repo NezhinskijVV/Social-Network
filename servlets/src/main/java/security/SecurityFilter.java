@@ -28,7 +28,8 @@ public class SecurityFilter implements HttpFilter {
         System.out.println("SECURITY FILTER");
         HttpSession session = request.getSession(true);
 
-        if (request.getRequestURL().toString().contains("/regist")) {
+        if (request.getRequestURL().toString().contains("/regist") ||
+                request.getRequestURL().toString().contains("/regpage")) {
             System.out.println("registration");
             chain.doFilter(request, response);
         } else {
@@ -53,6 +54,7 @@ public class SecurityFilter implements HttpFilter {
             }
         }
     }
+
     private long authorize(Map<String, String[]> parameterMap) {
         System.out.println("input: " + parameterMap.get("j_username")[0] + " " + parameterMap.get("j_password")[0]);
         return dancerDao.isRegistered(parameterMap.get("j_username")[0], parameterMap.get("j_password")[0]);
