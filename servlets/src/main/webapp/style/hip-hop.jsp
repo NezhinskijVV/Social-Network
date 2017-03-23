@@ -28,7 +28,7 @@
 
 <br><fmt:message key="prop.style.hiphop.oldmoves" bundle="${resourceBundle}"/>
 <ul><li> <fmt:message key="prop.style.hiphop.oldmoves.smurf" bundle="${resourceBundle}"/></li>
-<li> <fmt:message key="prop.style.hiphop.oldmoves.prep" bundle="${resourceBundle}"/>)</li>
+<li> <fmt:message key="prop.style.hiphop.oldmoves.prep" bundle="${resourceBundle}"/></li>
 <li> <fmt:message key="prop.style.hiphop.oldmoves.whop" bundle="${resourceBundle}"/></li>
 <li> <fmt:message key="prop.style.hiphop.oldmoves.cabbage" bundle="${resourceBundle}"/></li>
 <li> <fmt:message key="prop.style.hiphop.oldmoves.reebok" bundle="${resourceBundle}"/></li>
