@@ -13,7 +13,6 @@
 </head>
 <body>
 <%@ include file="menu.jsp" %>
-
 <jsp:useBean id="dancer" class="java.lang.Object" scope="request"/>
 
 <page:dancer dancer="${dancer}"/>

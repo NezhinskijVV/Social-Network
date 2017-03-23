@@ -29,6 +29,7 @@ public class SessionFilter implements Filter {
         if ((countOfNotRead != 0) && (wasCountOfNotRead < countOfNotRead)) {
             req.setAttribute("notReadMessages", countOfNotRead);
         }
+
         chain.doFilter(req, response);
     }
 }

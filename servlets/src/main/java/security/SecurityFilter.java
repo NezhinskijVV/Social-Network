@@ -32,7 +32,7 @@ public class SecurityFilter implements HttpFilter {
                 request.getRequestURL().toString().contains("/regpage")) {
             System.out.println("registration");
             chain.doFilter(request, response);
-        } else {
+        }  else{
             Map<String, String[]> params = request.getParameterMap();
             if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {
                 System.out.println("IT's okay");

@@ -13,6 +13,9 @@ dependencies {
     providedCompile 'org.apache.tomcat:tomcat-api:+'
     providedCompile 'org.apache.tomcat:tomcat-jsp-api:+'
 
+    //JSTL
+    compile group: 'jstl', name: 'jstl', version: '1.2'
+
 
     //log4j
     compile group: 'log4j', name: 'log4j', version: '1.2.17'

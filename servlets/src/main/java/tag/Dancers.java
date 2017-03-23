@@ -36,7 +36,7 @@ public class Dancers extends TagSupport{
                     .append(dancer.getNickname())
                     .append("</a></td><td><a href=\"/style/")
                     .append(dancer.getStyle())
-                    .append(".html\">")
+                    .append(".jsp\">")
                     .append(dancer.getStyle())
                     .append("</a></td></tr>");
         return out.toString();

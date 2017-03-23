@@ -36,7 +36,7 @@ public class Friends extends TagSupport {
                     .append(friend.getNickname())
                     .append("</a></td><td><a href=\"/style/")
                     .append(friend.getStyle())
-                    .append(".html\">")
+                    .append(".jsp\">")
                     .append(friend.getStyle())
                     .append("</td><td>")
                     .append(friend.getTelephone())

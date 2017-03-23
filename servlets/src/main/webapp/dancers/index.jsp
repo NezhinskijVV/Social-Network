@@ -12,8 +12,8 @@
 <jsp:useBean id="dancers" class="java.util.HashSet" scope="request"/>
 <table>
     <tr>
-        <th>dancer</th>
-        <th>style</th>
+        <th><fmt:message key="prop.alldancers.dancer" bundle="${resourceBundle}"/></th>
+        <th><fmt:message key="prop.alldancers.style" bundle="${resourceBundle}"/></th>
     </tr>
     <dancers:list dancers="${dancers}"/>
 </table>

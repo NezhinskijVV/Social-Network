@@ -10,7 +10,7 @@
 <body>
 <%@ include file="menu.jsp" %>
 <jsp:useBean id="fromMessages" class="java.util.HashSet" scope="request"/>
-These messages from these users:
+<fmt:message key="prop.messages.from" bundle="${resourceBundle}"/>
 <table>
     <messages:list fromMessages="${fromMessages}"/>
 </table>
