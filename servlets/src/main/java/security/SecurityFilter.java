@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
-//@WebFilter("/*")
 public class SecurityFilter implements HttpFilter {
     private final static String KEY = "key";
     private final static String KEY2 = "key2";
@@ -27,12 +26,16 @@ public class SecurityFilter implements HttpFilter {
             throws IOException, ServletException {
         System.out.println("SECURITY FILTER");
         HttpSession session = request.getSession(true);
-
-        if (request.getRequestURL().toString().contains("/regist") ||
+        String url =request.getRequestURL().toString();
+        if (url.contains("/regist") ||
                 request.getRequestURL().toString().contains("/regpage")) {
             System.out.println("registration");
             chain.doFilter(request, response);
-        }  else{
+        }
+        if (url.contains("/decoration/images/bye.jpg")) {
+            chain.doFilter(request, response);
+        }
+        else {
             Map<String, String[]> params = request.getParameterMap();
             if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {
                 System.out.println("IT's okay");

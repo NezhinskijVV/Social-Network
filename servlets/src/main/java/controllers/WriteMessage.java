@@ -60,5 +60,5 @@ public class WriteMessage extends HttpServlet {
                 m.setRead();
             }
         }
-        req.getRequestDispatcher("/message/index.jsp").include(req, resp);    }
+        req.getRequestDispatcher("/message/index.html").include(req, resp);    }
 }
