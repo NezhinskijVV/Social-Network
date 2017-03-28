@@ -1,6 +1,5 @@
 ul.hr {
     text-decoration: none;
-    margin: 0; /* Обнуляем значение отступов */
     padding: 4px; /* Значение полей */
     background: #006400;
 }
@@ -17,6 +16,14 @@ ul.hr button {
     text-align: left;
     background: #90EE90;
     width: 210px;
-    height: 120px;
+    height: 110px;
 }
 
+ul.hr button.language{
+    margin-bottom: 4px;
+    text-align: left;
+    padding: 0px;
+    background: #90EE90;
+    width: 135px;
+    height: 110px;
+}

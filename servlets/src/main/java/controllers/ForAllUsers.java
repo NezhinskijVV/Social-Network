@@ -40,11 +40,11 @@ public class ForAllUsers extends HttpServlet {
         req.getSession().setAttribute("nameOfFriend", dancerDao.getById(friendsId).getNickname());
         if (friendsDao.isFriend(id, friendsId)) {
             System.out.println("is a friend");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.html");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
             requestDispatcher.forward(req, resp);
         } else {
             System.out.println("isn't  a friend");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/index.html");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/index.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

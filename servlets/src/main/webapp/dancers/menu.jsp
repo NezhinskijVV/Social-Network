@@ -17,7 +17,7 @@
     <li>
         <button><a href="${pageContext.request.contextPath}/myPage">
             <img src="../decoration/images/mypage.jpg" alt="" style="vertical-align:middle">
-              <fmt:message key="prop.myPage" bundle="${resourceBundle}"/>
+            <fmt:message key="prop.myPage" bundle="${resourceBundle}"/>
         </a></button>
     </li>
     <li>
@@ -46,8 +46,9 @@
             <fmt:message key="prop.logout" bundle="${resourceBundle}"/></a></button>
     </li>
     <li>
-        <button><a href="${pageContext.request.contextPath}/change">
-            <fmt:message key="prop.language" bundle="${resourceBundle}"/></a></button>
+        <button class="language"><a href="${pageContext.request.contextPath}/change">
+            <fmt:message key="prop.language" bundle="${resourceBundle}"/></a>
+        </button>
     </li>
 
 </ul>

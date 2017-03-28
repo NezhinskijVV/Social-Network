@@ -18,8 +18,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Created by Nezhinskij VV on 18.01.2017.
  *
+ * Created by Nezhinskij VV on 18.01.2017.
  */
 @WebServlet("/friends")
 public class Friends extends HttpServlet {
