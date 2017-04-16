@@ -8,17 +8,14 @@
     <tlib-version>1.0</tlib-version>
     <short-name>myshortname</short-name>
     <uri>http://mycompany.com</uri>
-    <description>
-            Tag for count messages
-    </description>
-        <tag>
-            <name>counterMessages</name>
-            <tag-class>tag.CounterMessages</tag-class>
-            <body-content>empty</body-content>
-            <attribute>
-                <name>notReadMessages</name>
-                <required>true</required>
-                <rtexprvalue>true</rtexprvalue>
-            </attribute>
-        </tag>
+    <tag>
+        <name>counterMessages</name>
+        <tag-class>tag.CounterMessages</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>notReadMessages</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

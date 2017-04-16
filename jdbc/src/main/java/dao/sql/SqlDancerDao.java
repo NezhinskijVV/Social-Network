@@ -107,7 +107,6 @@ public class SqlDancerDao implements DancerDao {
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 

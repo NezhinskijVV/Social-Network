@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.DancerDao;
+import encrypt.Encryptor;
 
 
 import javax.servlet.ServletConfig;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.util.Map;
 
@@ -35,9 +37,13 @@ public class Registration extends HttpServlet {
             System.out.println("email not existing");
             String password = params.get("password")[0];
             if (password.equals(params.get("confirmpassword")[0])) {
-                dancerDao.register(params.get("name")[0], params.get("surname")[0],
-                        Date.valueOf(params.get("dob")[0]), params.get("nickname")[0],
-                        email, password, params.get("telephone")[0], Long.parseLong(params.get("option")[0]));
+                try {
+                    dancerDao.register(params.get("name")[0], params.get("surname")[0],
+                            Date.valueOf(params.get("dob")[0]), params.get("nickname")[0],
+                            email, Encryptor.encrypt(password), params.get("telephone")[0], Long.parseLong(params.get("option")[0]));
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
                 req.getRequestDispatcher("user/confirmation.html").forward(req, resp);
             } else req.getRequestDispatcher("user/registrationError.html").forward(req, resp);
         } else req.getRequestDispatcher("user/registrationError.html").forward(req, resp);

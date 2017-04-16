@@ -1,6 +1,7 @@
 package security;
 
 import dao.DancerDao;
+import encrypt.Encryptor;
 import httpFilter.HttpFilter;
 
 import javax.servlet.*;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 public class SecurityFilter implements HttpFilter {
@@ -41,7 +44,12 @@ public class SecurityFilter implements HttpFilter {
                 System.out.println("IT's okay");
                 chain.doFilter(request, response);
             } else if (params.containsKey("j_username") && params.containsKey("j_password")) {
-                long id = authorize(params);
+                long id = 0;
+                try {
+                    id = authorize(params);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
                 if (id > 0) {
                     session.setAttribute(KEY, new Object());
                     System.out.println("WRITE THIS KEY" + session.getAttribute(KEY));
@@ -58,8 +66,8 @@ public class SecurityFilter implements HttpFilter {
         }
     }
 
-    private long authorize(Map<String, String[]> parameterMap) {
+    private long authorize(Map<String, String[]> parameterMap) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         System.out.println("input: " + parameterMap.get("j_username")[0] + " " + parameterMap.get("j_password")[0]);
-        return dancerDao.isRegistered(parameterMap.get("j_username")[0], parameterMap.get("j_password")[0]);
+        return dancerDao.isRegistered(parameterMap.get("j_username")[0], Encryptor.encrypt(parameterMap.get("j_password")[0]));
     }
 }

@@ -18,6 +18,7 @@ public interface Encryptor {
         m.reset();
         // передаем в MessageDigest байт-код строки
         m.update(s.getBytes("utf-8"));
+
         // получаем MD5-хеш строки без лидирующих нулей
         String s2 = new BigInteger(1, m.digest()).toString(16);
         StringBuilder sb = new StringBuilder(32);

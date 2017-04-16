@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Detalya
@@ -10,10 +11,16 @@
 <head>
     <meta charset="UTF-8">
     <link href="../decoration/style.css" rel="stylesheet">
-    <title>Confirmation</title>
+    <title><fmt:setLocale value="${Locale.getDefault()}"/>
+        <fmt:setBundle basename="prop" var="resourceBundle"/>
+        <fmt:message key="prop.friends.confirmation" bundle="${resourceBundle}"/></title>
     <meta http-equiv="Refresh" content="3; url= ../dancers">
 </head>
 <body>
-    Запрос в друзья   ${sessionScope.name_of_friend} успешно отправлен!
+<fmt:message key="prop.friends.confirmation1" bundle="${resourceBundle}"/>
+${sessionScope.name_of_friend}
+<fmt:message key="prop.friends.confirmation2" bundle="${resourceBundle}"/>
+
+
 </body>
 </html>

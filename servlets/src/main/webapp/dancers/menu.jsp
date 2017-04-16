@@ -26,7 +26,6 @@
             <fmt:message key="prop.friends" bundle="${resourceBundle}"/>
         </a></button>
     </li>
-    <%--todo: adding friends (+1)--%>
     <li>
         <button><a href="${pageContext.request.contextPath}/messages">
             <img src="../decoration/images/messages.jpg" alt="" style="vertical-align:middle">
@@ -38,7 +37,7 @@
     <li>
         <button><a href="${pageContext.request.contextPath}/dancers">
             <img src="../decoration/images/alldancers.jpg" alt="" style="vertical-align:middle">
-            <fmt:message key="prop.alldancers" bundle="${resourceBundle}"/> </a></button>
+            <fmt:message key="prop.allDancers" bundle="${resourceBundle}"/> </a></button>
     </li>
     <li>
         <button><a href="${pageContext.request.contextPath}/logout">

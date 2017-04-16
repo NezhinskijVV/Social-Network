@@ -104,7 +104,6 @@ public class SqlFriendsDao implements FriendsDao {
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(
                     "INSERT INTO dancers_network.friends (dancer_id1,dancer_id2) VALUES("+id+","+friendId+");");
-
         } catch (SQLException | ConnectionPoolException e) {
             e.printStackTrace();
         }
