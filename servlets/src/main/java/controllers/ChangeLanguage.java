@@ -1,6 +1,5 @@
 package controllers;
 
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +19,13 @@ public class ChangeLanguage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (Locale.getDefault().equals(new Locale("ru", "Ru"))) {
+        if (req.getSession().getAttribute("language").equals(new Locale("ru", "Ru"))) {
+            req.getSession().setAttribute("language", new Locale("en", "En"));
             Locale.setDefault(new Locale("en", "En"));
         } else {
             Locale.setDefault(new Locale("ru", "Ru"));
+            req.getSession().setAttribute("language", new Locale("ru", "Ru"));
+
         }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("dancers/language.jsp");

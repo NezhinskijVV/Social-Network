@@ -1,9 +1,10 @@
-BODY{
+BODY {
     background-color: #b8edb9;
     font-family: Verdana, serif;
     font-size: 14pt;
 }
-H1{
+
+H1 {
     font-family: "Arial", fantasy;
     color: #FFFAFA;
     font-style: oblique;
@@ -11,51 +12,63 @@ H1{
     text-shadow: 1px 1px 2px #211925;
     text-align: center;
 }
-H2{
-    font-family: "Arial", serif ;
+
+H2 {
+    font-family: "Arial", serif;
     font-style: normal;
     font-size: 16pt;
 }
-H3{
-    font-family: "Arial", serif ;
+
+H3 {
+    font-family: "Arial", serif;
     font-style: italic;
     font-size: 14pt;
 }
-ul{
+
+ul {
     list-style: disc outside;
 }
-span.information{
+
+span.information {
     font-size: 14pt;
-    color : #696969;
+    color: #696969;
 }
-a{
+
+a {
     text-decoration: none;
 }
+
 p {
     margin-top: 0.5em; /* Отступ сверху */
     margin-bottom: 0.5em; /* Отступ снизу */
 }
+
 .b1 {
-    background:  #006400;
+    background: #006400;
     color: white;
     font-size: 16pt;
     padding: 3px;
     width: 120px;
-    height:30px;
+    height: 30px;
+}
+
+.b1 a{
+    text-decoration:none;
+    color:white;
 }
 .b2 {
-    background:  #006400;
+    background: #006400;
     color: white;
     font-size: 12pt;
     padding: 3px;
     width: 250px;
-    height:30px;
+    height: 30px;
 }
 
 .b3 {
     font-size: 12pt;
     padding: 3px;
     width: 250px;
-    height:30px;
+    height: 30px;
 }
 

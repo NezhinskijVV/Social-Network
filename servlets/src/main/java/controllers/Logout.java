@@ -44,7 +44,7 @@ public class Logout extends HttpServlet {
         }
         session.setAttribute(KEY, null);
         session.setAttribute(KEY2, null);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("logout/index.html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("logout/index.jsp");
         dispatcher.forward(req, resp);
     }
 }

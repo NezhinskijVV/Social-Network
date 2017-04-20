@@ -18,6 +18,8 @@ public class SessionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+
         System.out.println("COUNTER FILTER");
         long id = (long) ((HttpServletRequest) req).getSession().getAttribute("id");
 

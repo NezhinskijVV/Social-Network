@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 import java.util.Map;
 
 public class SecurityFilter implements HttpFilter {
@@ -58,6 +59,7 @@ public class SecurityFilter implements HttpFilter {
                     chain.doFilter(request, response);
                 } else request.getRequestDispatcher("user/loginError.jsp").forward(request, response);
             } else {
+                request.getSession().setAttribute("language", new Locale("en", "En"));
                 System.out.println("attribute KEY from current session: " + session.getAttribute(KEY));
                 System.out.println("attribute KEY2 from current session: " + session.getAttribute(KEY2));
                 RequestDispatcher dispatcher = request.getRequestDispatcher("user/loginUser.html");

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Locale;
 
 /**
  * Created by Nezhinskij VV on 10.03.2017.
@@ -30,6 +31,7 @@ public class BeforeRegistration extends HttpServlet {
     protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Collection<Style> styles = styleDao.getAll();
         req.setAttribute("styles", styles);
+        req.getSession().setAttribute("language", new Locale("en", "En"));
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/user/registration.jsp");
         requestDispatcher.forward(req, resp);
     }

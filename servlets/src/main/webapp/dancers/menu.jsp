@@ -2,7 +2,8 @@
 <%@ taglib uri="/WEB-INF/counterMessages.tld" prefix="countmess" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="prop" var="resourceBundle"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +12,7 @@
     <title>Menu</title>
 </head>
 <body>
-<fmt:setLocale value="${Locale.getDefault()}"/>
-<fmt:setBundle basename="prop" var="resourceBundle"/>
+
 <ul class="hr">
     <li>
         <button><a href="${pageContext.request.contextPath}/myPage">

@@ -7,11 +7,9 @@
     <meta charset="UTF-8">
     <link href="../decoration/style.css" rel="stylesheet">
     <title>
-        <fmt:message key="prop.language.tittle" bundle="${resourceBundle}"/>
-    </title>
+        <fmt:message key="prop.goodbye" bundle="${resourceBundle}"/></title>
 </head>
 <body>
-    <%@ include file="menu.jsp" %>
-    <fmt:message key="prop.changelanguage" bundle="${resourceBundle}"/>
+<p><img src="../decoration/images/bye.jpg" width="850" height="525"></p>
 </body>
 </html>

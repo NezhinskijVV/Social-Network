@@ -23,6 +23,6 @@
     <meta http-equiv="Refresh" content="3; url=loginUser.html">
 </head>
 <body>
-ERROR! Not valid name or password!
+    ERROR! Not valid name or password!
 </body>
 </html>

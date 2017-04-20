@@ -2,7 +2,6 @@ package controllers;
 
 import dao.DancerDao;
 import dao.FriendsDao;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

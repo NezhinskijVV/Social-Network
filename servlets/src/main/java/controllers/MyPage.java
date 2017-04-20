@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by Nezhinskij VV on 02.12.2016.
  *
  */
-@WebServlet({"/myPage", "/foruser"})
+@WebServlet({"/myPage"})
 public class MyPage extends HttpServlet {
     private DancerDao dancerDao;
 
