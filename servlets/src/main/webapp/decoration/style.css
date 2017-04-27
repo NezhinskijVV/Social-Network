@@ -72,20 +72,5 @@ p {
     height: 30px;
 }
 
-/*.item-list {*/
-    /*background: #00cc80;*/
-    /*margin-bottom: 15px;*/
-/*}*/
-
-.item-list.pager.c  li{
-    display: inline;
-    list-style: none;
-    margin-top: 20%; /* Отступ сверху */
-
-}
-.pager a {
-    color: #9A0000;
-    text-decoration: none;
-}
 
 

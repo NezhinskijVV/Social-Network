@@ -34,6 +34,7 @@ public class Styles extends TagSupport{
         return out.toString();
     }
 
+    @SuppressWarnings("unused")
     public void setStyles(Collection<Style> styles) {
         this.styles = styles;
     }

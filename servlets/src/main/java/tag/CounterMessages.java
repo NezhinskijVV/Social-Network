@@ -23,6 +23,7 @@ public class CounterMessages extends TagSupport {
         return SKIP_BODY;
     }
 
+    @SuppressWarnings("unused")
     public void setnotReadMessages(int count) {
         this.count = count;
     }

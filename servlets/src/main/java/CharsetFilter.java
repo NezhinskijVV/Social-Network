@@ -1,5 +1,4 @@
 import org.apache.log4j.Logger;
-
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -18,9 +17,9 @@ public class CharsetFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("CHARSET FILTER");
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
+        LOG.info("CHARSET FILTER");
+        request.setCharacterEncoding(encoding);
+        response.setCharacterEncoding(encoding);
         LOG.info("Charset was set.");
         chain.doFilter(request,response);
     }

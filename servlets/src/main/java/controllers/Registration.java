@@ -2,6 +2,8 @@ package controllers;
 
 import dao.DancerDao;
 import encrypt.Encryptor;
+import logger.ReqListener;
+import org.apache.log4j.Logger;
 
 
 import javax.servlet.ServletConfig;
@@ -22,6 +24,7 @@ import java.util.Map;
 @WebServlet("/register")
 public class Registration extends HttpServlet {
     private DancerDao dancerDao;
+    private static final Logger LOG = Logger.getLogger(ReqListener.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -34,7 +37,7 @@ public class Registration extends HttpServlet {
         String email = params.get("email")[0].trim().toLowerCase();
 
         if (!dancerDao.existingEmail(email)) {
-            System.out.println("email not existing");
+            LOG.info("email not existing");
             String password = params.get("password")[0];
             if (password.equals(params.get("confirmpassword")[0])) {
                 try {

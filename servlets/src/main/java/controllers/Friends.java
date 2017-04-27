@@ -3,8 +3,10 @@ package controllers;
 import common.ConnectionPoolException;
 import dao.DancerDao;
 import dao.FriendsDao;
+import logger.ReqListener;
 import model.Dancer;
 import model.FriendsContainer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -25,6 +27,7 @@ import java.util.*;
 public class Friends extends HttpServlet {
     private FriendsDao friendsDao;
     private DancerDao dancerDao;
+    private static final Logger LOG = Logger.getLogger(ReqListener.class);
 
     private static List<FriendsContainer> requestsOfFriends = new ArrayList<>();
 
@@ -41,13 +44,13 @@ public class Friends extends HttpServlet {
         Map<String, String[]> params = req.getParameterMap();
 
         if (params.containsKey("addFriend")) {
-            System.out.println("addFriend");
+            LOG.info("addFriend");
             long toId = (long) req.getSession().getAttribute("to_id");
             FriendsContainer fc = new FriendsContainer(id, toId);
             requestsOfFriends.add(fc);
         }
         if (params.containsKey("confirmAdding")) {
-            System.out.println("confirm adding");
+            LOG.info("confirm adding");
             long toId = (long) req.getSession().getAttribute("to_id");
             requestsOfFriends.remove(new FriendsContainer(toId, id));
             friendsDao.addFriend(toId, id);
@@ -66,10 +69,6 @@ public class Friends extends HttpServlet {
         Collection<Dancer> friends = null;
         try {
             friends = friendsDao.getDancersById(id);
-            for (Dancer d : friends
-                    ) {
-                System.out.println(d.getFirstName());
-            }
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }

@@ -3,6 +3,8 @@ package security;
 import dao.DancerDao;
 import encrypt.Encryptor;
 import httpFilter.HttpFilter;
+import logger.ReqListener;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -18,6 +20,7 @@ import java.util.Map;
 public class SecurityFilter implements HttpFilter {
     private final static String KEY = "key";
     private final static String KEY2 = "key2";
+    private static final Logger LOG = Logger.getLogger(ReqListener.class);
     private DancerDao dancerDao;
 
     @Override
@@ -28,12 +31,12 @@ public class SecurityFilter implements HttpFilter {
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("SECURITY FILTER");
+        LOG.info("SECURITY FILTER");
         HttpSession session = request.getSession(true);
         String url =request.getRequestURL().toString();
         if (url.contains("/regist") ||
                 request.getRequestURL().toString().contains("/regpage")) {
-            System.out.println("registration");
+            LOG.info("registration");
             chain.doFilter(request, response);
         }
         if (url.contains("/decoration/images/bye.jpg")) {
@@ -42,7 +45,7 @@ public class SecurityFilter implements HttpFilter {
         else {
             Map<String, String[]> params = request.getParameterMap();
             if ((session.getAttribute(KEY) != null) | (session.getAttribute(KEY2) != null)) {
-                System.out.println("IT's okay");
+                //LOG.info("Registration is  okay");
                 chain.doFilter(request, response);
             } else if (params.containsKey("j_username") && params.containsKey("j_password")) {
                 long id = 0;
@@ -53,15 +56,11 @@ public class SecurityFilter implements HttpFilter {
                 }
                 if (id > 0) {
                     session.setAttribute(KEY, new Object());
-                    System.out.println("WRITE THIS KEY" + session.getAttribute(KEY));
-                    System.out.println("SET ID");
                     session.setAttribute("id", id);
                     chain.doFilter(request, response);
                 } else request.getRequestDispatcher("user/loginError.jsp").forward(request, response);
             } else {
                 request.getSession().setAttribute("language", new Locale("en", "En"));
-                System.out.println("attribute KEY from current session: " + session.getAttribute(KEY));
-                System.out.println("attribute KEY2 from current session: " + session.getAttribute(KEY2));
                 RequestDispatcher dispatcher = request.getRequestDispatcher("user/loginUser.html");
                 dispatcher.forward(request, response);
             }
@@ -69,7 +68,7 @@ public class SecurityFilter implements HttpFilter {
     }
 
     private long authorize(Map<String, String[]> parameterMap) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        System.out.println("input: " + parameterMap.get("j_username")[0] + " " + parameterMap.get("j_password")[0]);
+        LOG.info("input: " + parameterMap.get("j_username")[0] + " " + parameterMap.get("j_password")[0]);
         return dancerDao.isRegistered(parameterMap.get("j_username")[0], Encryptor.encrypt(parameterMap.get("j_password")[0]));
     }
 }

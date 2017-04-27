@@ -2,6 +2,9 @@ package controllers;
 
 import dao.DancerDao;
 import dao.FriendsDao;
+import logger.ReqListener;
+import org.apache.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import java.io.IOException;
 public class ForAllUsers extends HttpServlet {
     private FriendsDao friendsDao;
     private DancerDao dancerDao;
+    private static final Logger LOG = Logger.getLogger(ReqListener.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -28,9 +32,8 @@ public class ForAllUsers extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("FOR ALL USERS");
-        System.out.println( req.getSession().getAttribute("id"));
-        System.out.println(req.getQueryString().substring(3));
+        LOG.info("FOR ALL USERS");
+        LOG.info( req.getSession().getAttribute("id"));
 
 
         long id = (long) req.getSession().getAttribute("id");
@@ -38,11 +41,11 @@ public class ForAllUsers extends HttpServlet {
         req.getSession().setAttribute("to_id", friendsId);
         req.getSession().setAttribute("nameOfFriend", dancerDao.getById(friendsId).getNickname());
         if (friendsDao.isFriend(id, friendsId)) {
-            System.out.println("is a friend");
+            LOG.info("is a friend");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
             requestDispatcher.forward(req, resp);
         } else {
-            System.out.println("isn't  a friend");
+            LOG.info("isn't  a friend");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/index.jsp");
             requestDispatcher.forward(req, resp);
         }

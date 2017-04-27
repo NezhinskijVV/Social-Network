@@ -30,7 +30,7 @@
         <button><a href="${pageContext.request.contextPath}/messages">
             <img src="../decoration/images/messages.jpg" alt="" style="vertical-align:middle">
             <fmt:message key="prop.messages" bundle="${resourceBundle}"/>
-            <jsp:useBean id="count" class="java.lang.Object" scope="request"/>
+            <%--@elvariable id="notReadMessages" type="java.lang.Integer"--%>
             <countmess:counterMessages notReadMessages="${notReadMessages}"/>
         </button>
     </li>

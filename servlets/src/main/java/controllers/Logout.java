@@ -36,7 +36,6 @@ public class Logout extends HttpServlet {
 
 
         long idDancer = (long) req.getSession().getAttribute("id");
-        System.out.println("idDancer" + idDancer);
         List<MessageContainer> list = history.getListOfReadMessagesById(idDancer);
         for (MessageContainer ms: list
              ) {

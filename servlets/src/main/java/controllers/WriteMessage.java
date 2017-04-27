@@ -3,9 +3,11 @@ package controllers;
 
 import dao.DancerDao;
 import dao.HistoryDao;
+import logger.ReqListener;
 import model.Dancer;
 import model.History;
 import model.MessageContainer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,6 +30,7 @@ public class WriteMessage extends HttpServlet {
     private History history;
     private DancerDao dancerDao;
     private HistoryDao historyDao;
+    private static final Logger LOG = Logger.getLogger(ReqListener.class);
     private final static int messagesOnPage = 10;
 
     @Override
@@ -53,7 +56,7 @@ public class WriteMessage extends HttpServlet {
                 resp.sendRedirect(url);
             }
         } else if (req.getParameter("History") != null) {
-            System.out.println("HISTORY NOT NULL");
+            LOG.info("HISTORY");
             printList((List<MessageContainer>) historyDao.getByIds(idDancer, idDancer2), idDancer, idDancer2, out);
         }
 

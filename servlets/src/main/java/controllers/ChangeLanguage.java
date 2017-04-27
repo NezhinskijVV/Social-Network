@@ -25,7 +25,6 @@ public class ChangeLanguage extends HttpServlet {
         } else {
             Locale.setDefault(new Locale("ru", "Ru"));
             req.getSession().setAttribute("language", new Locale("ru", "Ru"));
-
         }
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("dancers/language.jsp");
