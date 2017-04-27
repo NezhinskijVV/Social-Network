@@ -18,7 +18,6 @@ public class Messages extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             String result = getFromList(fromMessages);
-
             pageContext.getOut().print(result);
         } catch (IOException e) {
             e.printStackTrace();
