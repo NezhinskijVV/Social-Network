@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by Nezhinskij VV on 25.11.2016.
  */
 @WebServlet("/dancer/")
@@ -26,7 +27,7 @@ public class WriteMessage extends HttpServlet {
     private History history;
     private DancerDao dancerDao;
     private HistoryDao historyDao;
-    public final static int messagesOnPage = 10;
+    private final static int messagesOnPage = 10;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
