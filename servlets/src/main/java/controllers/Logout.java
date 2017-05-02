@@ -33,13 +33,14 @@ public class Logout extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-
-
-        long idDancer = (long) req.getSession().getAttribute("id");
+        long idDancer = (long) session.getAttribute("id");
         List<MessageContainer> list = history.getListOfReadMessagesById(idDancer);
-        for (MessageContainer ms: list
-             ) {
-            historyDao.addReadMessage(ms);
+        System.out.println(list);
+        if (!list.isEmpty()) {
+            for (MessageContainer ms : list) {
+                historyDao.addReadMessage(ms);
+                history.getList().remove(ms);
+            }
         }
         session.setAttribute(KEY, null);
         session.setAttribute(KEY2, null);

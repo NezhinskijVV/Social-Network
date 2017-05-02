@@ -15,7 +15,7 @@ public class CounterMessages extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             if (count != 0) {
-                pageContext.getOut().print("+ " + count);
+                pageContext.getOut().print("(" + count+")");
             }
         } catch (IOException e) {
             e.printStackTrace();

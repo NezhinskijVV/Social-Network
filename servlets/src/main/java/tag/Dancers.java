@@ -30,8 +30,9 @@ public class Dancers extends TagSupport{
     private static String getDancerList(Collection<Dancer> dancers) throws IOException {
         StringBuilder out = new StringBuilder();
         for (Dancer dancer: dancers)
-            out.append("<tr><td><a href=\"/friend/?id=")
+            out.append("<tr><td><a href=\"/dancer/?id=")
                     .append(dancer.getId())
+                    .append("&page=1")
                     .append("\">")
                     .append(dancer.getNickname())
                     .append("</a></td><td><a href=\"/style/")
