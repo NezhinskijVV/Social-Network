@@ -37,7 +37,7 @@ public class ForAllUsers extends HttpServlet {
 
 
         long id = (long) req.getSession().getAttribute("id");
-        long friendsId = Long.parseLong(req.getQueryString().substring(3));
+        long friendsId = Long.parseLong(req.getQueryString().substring(3).split("&")[0]);
         req.getSession().setAttribute("to_id", friendsId);
         req.getSession().setAttribute("nameOfFriend", dancerDao.getById(friendsId).getNickname());
         if (friendsDao.isFriend(id, friendsId)) {

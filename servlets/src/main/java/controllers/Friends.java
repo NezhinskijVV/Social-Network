@@ -23,7 +23,7 @@ import java.util.*;
  *
  * Created by Nezhinskij VV on 18.01.2017.
  */
-@WebServlet("/friends")
+@WebServlet("/friends/")
 public class Friends extends HttpServlet {
     private FriendsDao friendsDao;
     private DancerDao dancerDao;
@@ -40,7 +40,6 @@ public class Friends extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         long id = (long) req.getSession().getAttribute("id");
-        System.out.println("out id" + id);
         Map<String, String[]> params = req.getParameterMap();
 
         if (params.containsKey("addFriend")) {
@@ -55,6 +54,8 @@ public class Friends extends HttpServlet {
             requestsOfFriends.remove(new FriendsContainer(toId, id));
             friendsDao.addFriend(toId, id);
         }
+
+        LOG.info("check new friends");
 
         for (FriendsContainer fc : requestsOfFriends
                 ) {
@@ -72,6 +73,7 @@ public class Friends extends HttpServlet {
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }
+
         req.setAttribute("friends", friends);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/friends.jsp");
         requestDispatcher.forward(req, res);

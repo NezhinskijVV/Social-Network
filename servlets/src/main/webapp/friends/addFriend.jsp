@@ -15,7 +15,7 @@
         <fmt:message key="prop.friends.addFriend2" bundle="${resourceBundle}"/>
     </p>
 
-    <form method="POST" action="../friends">
+    <form method="POST" action="../friends/">
         <input class="b1" type="submit" name="confirmAdding" value=<fmt:message key="prop.button.yes" bundle="${resourceBundle}"/>>
         <button class="b1"><a href="../friends"> <fmt:message key="prop.button.no" bundle="${resourceBundle}"/></a></button>
     </form>
