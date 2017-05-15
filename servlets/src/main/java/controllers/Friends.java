@@ -20,7 +20,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- *
  * Created by Nezhinskij VV on 18.01.2017.
  */
 @WebServlet("/friends/")
@@ -56,6 +55,9 @@ public class Friends extends HttpServlet {
         }
 
         LOG.info("check new friends");
+        for (FriendsContainer fc :requestsOfFriends){
+            System.out.println("from: "+fc.getIdFrom() + " to: " + fc.getIdTo() + " ");
+        }
 
         for (FriendsContainer fc : requestsOfFriends
                 ) {
@@ -70,10 +72,13 @@ public class Friends extends HttpServlet {
         Collection<Dancer> friends = null;
         try {
             friends = friendsDao.getDancersById(id);
+
         } catch (ConnectionPoolException | SQLException e) {
             e.printStackTrace();
         }
-
+        for (Dancer d:friends){
+            System.out.println(d.getFirstName());
+        }
         req.setAttribute("friends", friends);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/friends.jsp");
         requestDispatcher.forward(req, res);

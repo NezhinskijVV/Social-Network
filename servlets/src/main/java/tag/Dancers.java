@@ -9,10 +9,9 @@ import java.util.Collection;
 
 /**
  *
- *
  * Created by Nezhinskij VV on 24.11.2016.
  */
-public class Dancers extends TagSupport{
+public class Dancers extends TagSupport {
     private Collection<Dancer> dancers;
 
     @Override
@@ -26,11 +25,10 @@ public class Dancers extends TagSupport{
     }
 
 
-
     private static String getDancerList(Collection<Dancer> dancers) throws IOException {
         StringBuilder out = new StringBuilder();
-        for (Dancer dancer: dancers)
-            out.append("<tr><td><a href=\"/friend/?id=")
+        for (Dancer dancer : dancers)
+            out.append("<tr><td><a href=\"/dancer/?id=")
                     .append(dancer.getId())
                     .append("&page=1")
                     .append("\">")

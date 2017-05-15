@@ -60,7 +60,7 @@ public class SqlFriendsDao implements FriendsDao {
                              "LEFT JOIN dancers_network.style " +
                              "ON dancer.style_id= style.id " +
                              "LEFT JOIN dancers_network.friends ON dancer.id=dancer_id1  OR dancer.id=dancer_id2 " +
-                             "WHERE dancer_id2=" + id + " OR dancer_id1 =" + id + " GROUP BY dancer.id;")
+                             "WHERE dancer.id!=" + id + " AND (dancer_id2=" + id + " OR dancer_id1 =" + id + ") GROUP BY dancer.id;")
         ) {
             while (resultSet.next()) {
                 Dancer dancer = new Dancer(

@@ -18,7 +18,7 @@ import java.io.IOException;
  *
  * Created by Nezhinskij VV on 19.01.2017.
  */
-@WebServlet("/friend/")
+@WebServlet("/dancer/")
 public class ForAllUsers extends HttpServlet {
     private FriendsDao friendsDao;
     private DancerDao dancerDao;
@@ -42,8 +42,7 @@ public class ForAllUsers extends HttpServlet {
         req.getSession().setAttribute("nameOfFriend", dancerDao.getById(friendsId).getNickname());
         if (friendsDao.isFriend(id, friendsId)) {
             LOG.info("is a friend");
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/message/index.jsp");
-            requestDispatcher.forward(req, resp);
+            resp.sendRedirect("/friend/?id="+friendsId +"&page=1");
         } else {
             LOG.info("isn't  a friend");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/friends/index.jsp");

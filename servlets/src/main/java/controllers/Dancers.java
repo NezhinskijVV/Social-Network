@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
- * Created by Nezhinskij VV on 24.11.2016.
  *
+ * Created by Nezhinskij VV on 24.11.2016.
  */
 @WebServlet("/dancers")
 public class Dancers extends HttpServlet {
@@ -28,9 +29,16 @@ public class Dancers extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Collection<Dancer>  dancers = dancerDao.getAll();
+        Collection<Dancer> dancers = dancerDao.getAll();
+        dancers.remove(dancerDao.getById((Long) req.getSession().getAttribute("id")));
+        Iterator<Dancer> iter = dancers.iterator();
+        while(iter.hasNext()){
+            if(iter.next().getEmail().equals(dancerDao.getById((Long) req.getSession().getAttribute("id")).getEmail())){
+                iter.remove();
+            }
+        }
         req.setAttribute("dancers", dancers);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/dancers/index.jsp");
-        requestDispatcher.forward(req,resp);
+        requestDispatcher.forward(req, resp);
     }
 }

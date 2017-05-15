@@ -25,7 +25,7 @@ import java.util.List;
  *
  * Created by Nezhinskij VV on 25.11.2016.
  */
-@WebServlet("/dancer/")
+@WebServlet("/friend/")
 public class WriteMessage extends HttpServlet {
     private History history;
     private DancerDao dancerDao;
